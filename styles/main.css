@@ -1,5 +1,5 @@
 @import '../js/keep/styles/keep.css';
-@import '../js/email/styles/email.css';
+@import './email/email.css';
 
 
 body {

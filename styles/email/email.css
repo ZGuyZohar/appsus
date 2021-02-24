@@ -35,3 +35,20 @@
 .email .read {
     background-color: gray;
 }
+
+.email .composer {
+    position: fixed;
+    bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    right: 10px;
+}
+
+.composer form {
+    display: flex;
+    flex-direction: column;
+}
+
+.composer button {
+    width: 50px;
+}
