@@ -10,20 +10,22 @@ export const emailService = {
     getById,
     getNeighsId,
     getIdxById,
-    updateMail
+    updateMail,
+    _createMail
 }
 
 function query() {
     return storageService.query(EMAILS_KEY)
     .then((emails) => {
       if(!emails || !emails.length){
-        console.log('fromgMails');
+        console.log('fromGmails');
         storageService._save(EMAILS_KEY, gMails)
         return gMails
       }
       return emails
     })
 }
+
 
 function remove(mailId) {
     return storageService.remove(EMAILS_KEY, mailId)
@@ -59,6 +61,20 @@ function getNeighsId(id){
     })
 }
 
+function _createMail(name, email, subject, body ) {
+    const mail = {
+        id: storageService._makeId(),
+        name,
+        email,
+        subject,
+        body,
+        isRead: false,
+        sentAt: new Date().toLocaleDateString(),
+        isSent: true
+    }
+    return mail;
+}
+
 const gMails = [
       {
         id: storageService._makeId(),
@@ -68,7 +84,8 @@ const gMails = [
         body: `Reply directly to this email to comment, and CC teammates to add them as collaborators.
         If you want to stop receiving notifications about this task, you can remove yourself from it.`, 
         isRead: false, 
-        sentAt : new Date().toLocaleDateString()
+        sentAt : new Date().toLocaleDateString(),
+        isSent: false
       },
       {
         id: storageService._makeId(),
@@ -80,7 +97,8 @@ const gMails = [
         Thanks!
         Sincerely, Yossi Bob`, 
         isRead: false,
-        sentAt : new Date().toLocaleDateString()
+        sentAt : new Date().toLocaleDateString(),
+        isSent: false
       },
       {
         id: storageService._makeId(),
@@ -90,6 +108,7 @@ const gMails = [
         body: `Where were you?! We were all waiting for you and finished the assignment by ourselves. 
         The teacher is pissed!`, 
         isRead: false, 
-        sentAt : new Date().toLocaleDateString()
+        sentAt : new Date().toLocaleDateString(),
+        isSent: false
       }
 ]
