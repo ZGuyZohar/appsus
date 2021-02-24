@@ -6,7 +6,7 @@ const options = {
     template: `
         <section class="container">  
             <app-header />
-            <h1>NEW PULL </h1>
+            <h1>check </h1>
             <router-view />
             <footer><p> &copy; Coffeerights 2021</p></footer>
         </section>
