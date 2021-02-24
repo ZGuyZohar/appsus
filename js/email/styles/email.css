@@ -1,0 +1,37 @@
+.email {
+    display: flex;
+}
+
+.email li {
+    list-style: none;
+}
+
+.email .list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-right: 5%;
+    padding-left: 5%;
+}
+
+.email .preview {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.email a {
+    color: black;
+    text-decoration: none;
+}
+
+.email a:visited {
+    color: black;
+}
+
+.email .read {
+    background-color: gray;
+}
