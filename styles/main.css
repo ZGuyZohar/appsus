@@ -2,8 +2,39 @@
 /* @import 'main.css'; */
 
 
+body {
+    margin: 0 auto;
+    box-sizing: border-box;
+    text-align: center;
+}
+
 /* HELPERS */
 
 /* NAV BAR */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(247, 243, 238);
+}
+
+nav {
+    align-content: center;
+}
+
+.nav-links {
+    font-size: 1.5rem;
+    margin: 10px;
+    text-decoration: none;
+}
+
 
 /* FOOTER */
+footer{
+    background-color: rgb(195, 238, 195);
+    position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 2.5rem; 
+    padding: 5px;
+}

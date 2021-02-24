@@ -1,9 +1,14 @@
 export default {
     template: `
+     <header class="app-header">
+     <h2 class="logo">Appsus</h2>
     <nav>
-    <router-link to="/keep">To keep</router-link>
-    <!-- <router-link></router-link>
-    <router-link></router-link> -->
-    </nav>
+    <router-link class="nav-links" to="/keep">Keep</router-link>
+    <router-link class="nav-links" to="/email">E-Mail</router-link>
+    <router-link class="nav-links" to="/miss-book">Books</router-link>
+    <router-link class="nav-links" to="/">Home</router-link>
+</nav>
+
+</header>
     `
 }
