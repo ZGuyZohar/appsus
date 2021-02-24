@@ -1,4 +1,4 @@
-import keepApp from './pages/keep.cmp.js'
+import keepApp from './keep/keep-page.cmp.js'
 
 const routes = [
     // {
