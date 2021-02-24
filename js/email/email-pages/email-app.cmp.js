@@ -1,4 +1,4 @@
-import {emailStorage} from '../services/email-storage-service.js'
+import {emailService} from '../services/email-storage-service.js'
 
 export default {
     template: `
