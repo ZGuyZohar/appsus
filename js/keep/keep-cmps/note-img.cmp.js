@@ -3,15 +3,17 @@ export default {
     template: `
 <section class="keep-note-img">
    
+<div :bind="note" @change.prevent="reportNote">img</div>
       </section>
     `,
-
-// data() {
-//     return {
-
-//     }
-// }
-methods: {
-   
+    data() {
+        return {
+            note: ''
     }
+},
+methods: {
+    reportNote() {
+        this.$emit('setNote' , this.note)
+    }
+}
 }

@@ -3,26 +3,24 @@ export default {
     props: ['info'],
     template: `
 <section class="keep-note-txt">
-    {{note.type}}
-    <br/>
-    {{note.info.txt}}
-    <div :bind="note" @change.prevent="reportNote"></div>
+
+    <div :bind="note" @change.prevent="reportNote" @setNote="setAns($event)">{{info}}</div>
+
       </section>
     `,
     data() {
         return {
-           note: {
-                type: "NoteTxt",
-                isPinned: true,
-                info: {
-                txt: "Fullstack Me Baby!"
-                }
-        }
+            note: '',
+           
+            
     }
 },
 methods: {
     reportNote() {
         this.$emit('setNote' , this.note)
-    }
+    },
+    setAns() {
+        console.log('check')
+}
 }
 }

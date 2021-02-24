@@ -3,11 +3,17 @@ export default {
     template: `
 <section class="keep-note-todos">
    
+<div :bind="note" @change.prevent="reportNote">todos</div>
       </section>
     `,
-
-
-methods: {
-   
+    data() {
+        return {
+            note: ''
     }
+},
+methods: {
+    reportNote() {
+        this.$emit('setNote' , this.note)
+    }
+}
 }
