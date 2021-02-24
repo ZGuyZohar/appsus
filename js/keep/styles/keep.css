@@ -1,0 +1,18 @@
+body {
+    background-color: rgb(178, 203, 250);
+}
+
+.keep-cards {
+display: grid;
+width: 100%;
+gap: 15px;
+grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+}
+
+.keep-card {
+    height: 230px;
+    width: 180px;
+    background-color: rgb(222, 245, 243);
+    border: 1px solid gray;
+    border-radius: 5px;
+}
