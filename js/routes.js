@@ -15,12 +15,10 @@ const routes = [
     {
         path: '/email',
         component: emailApp,
-        children: [
-            {
-                path: ':id',
-                component: emailDetails
-            }
-        ]
+    },
+    {
+        path: '/email/:id',
+        component: emailDetails
     },
 
 ]

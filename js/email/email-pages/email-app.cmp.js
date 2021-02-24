@@ -7,13 +7,11 @@ export default {
     <section class="email">
         <aside-nav />
         <mail-list v-if="emails" @isOpen="updateMail" :emails="emails" />
-        <router-view v-if="" :mail="openMail" />
     </section>
     `,
     data(){
         return {
             emails: [],
-            currMail: null
         }
     },
     methods: {
@@ -21,13 +19,10 @@ export default {
             emailService.query()
             .then(emails => this.emails = emails)
         },
-        updateMail(updatedVal, currMail){
+        updateMail(currMail){
             emailService.getIdxById(currMail.id)
             .then(idx => {
-                this.emails[idx].isRead = updatedVal;
-                this.emails[idx].isOpen = currMail.isOpen;
-                this.currMail = currMail;
-                console.log(this.currMail);
+                this.emails[idx].isRead = currMail.isRead;
                 return this.emails[idx];
             })
             .then((mail) => emailService.updateMail(mail))
@@ -35,6 +30,7 @@ export default {
     },
     created(){
         this.loadEmails()
+
     },
     components: {
         asideNav,

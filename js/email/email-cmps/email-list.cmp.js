@@ -10,8 +10,8 @@ export default {
     `,
     props: ['emails'],
     methods: {
-        updateMail(isRead, mail){
-            this.$emit('isOpen', isRead, mail)
+        updateMail(mail){
+            this.$emit('isOpen', mail)
         }
     },
     components: {

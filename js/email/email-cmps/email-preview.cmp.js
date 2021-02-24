@@ -1,37 +1,39 @@
+
+
 export default {
     template: `
-     <router-link :to="clickedMail" class="preview" :class="readClass" @click.native="openMail">  
+     <router-link to="/email" class="preview" @click.native="openMail" :class="readClass" >  
+            <span> {{mail.name}} </span>
             <span> {{mail.email}} </span>
             <span> {{mail.subject}} </span>
+            <span> {{mail.sentAt}} </span>
             <span @click.stop="toggleRead">✉</span>    
     </router-link>
-    
     `,
     props: ['mail'],
     data(){
         return {
-            
+            isOpen: false,
         }
     },
     methods: {
         openMail(){
             this.mail.isRead = true;
-            // this.mail.isOpen = true;
-            console.log(this.mail);
-            this.$emit('isOpen', this.mail.isRead, this.mail);
+            this.isOpen = true;
+            this.$emit('isOpen', this.mail);
+            this.clickedMail();
         },
         toggleRead(){
             this.mail.isRead = !this.mail.isRead
-            // this.mail.isOpen = false;
-            this.$emit('isOpen', this.mail.isRead, this.mail)
+            this.$emit('isOpen', this.mail)
+        },
+        clickedMail(){
+            if(this.isOpen) this.$router.push('/email/' + this.mail.id)
         }
     },
     computed: {
         readClass(){
             return {read : this.mail.isRead === true}
         },
-        clickedMail() {
-            return '/email/' + this.mail.id
-        }
     }
 }

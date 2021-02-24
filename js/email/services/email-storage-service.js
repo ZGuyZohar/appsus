@@ -62,16 +62,17 @@ function getNeighsId(id){
 const gMails = [
       {
         id: storageService._makeId(),
+        name: 'Kaleb Walker',
         email: 'kalebwalker93@gmail.com',
         subject: 'Kaleb Walker has invited you to join his Git Repository!', 
         body: `Reply directly to this email to comment, and CC teammates to add them as collaborators.
         If you want to stop receiving notifications about this task, you can remove yourself from it.`, 
         isRead: false, 
-        isOpen: false, 
-        sentAt : 1551133990594
+        sentAt : new Date().toLocaleDateString()
       },
       {
         id: storageService._makeId(),
+        name: 'Yossi Bob',
         email: 'bob_yossi67@yahoo.com',
         subject: 'Looking to buy your car.', 
         body: `Hey! My name is Yossi, 
@@ -79,17 +80,16 @@ const gMails = [
         Thanks!
         Sincerely, Yossi Bob`, 
         isRead: false,
-        isOpen: false, 
-        sentAt : 1551133930594
+        sentAt : new Date().toLocaleDateString()
       },
       {
         id: storageService._makeId(),
+        name: 'Coolio Peterson',
         email: 'cooldudez420@hotmail.com',
         subject: 'Duuuude you missed the video call!', 
         body: `Where were you?! We were all waiting for you and finished the assignment by ourselves. 
         The teacher is pissed!`, 
         isRead: false, 
-        isOpen: false, 
-        sentAt : 1551133830594
+        sentAt : new Date().toLocaleDateString()
       }
 ]
