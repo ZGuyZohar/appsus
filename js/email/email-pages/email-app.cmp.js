@@ -6,7 +6,7 @@ export default {
     template: `
     <section class="email">
         <aside-nav />
-        <mail-list v-if="emails  " @isOpen="updateMail" :emails="emails" />
+        <mail-list v-if="emails" @isOpen="updateMail" :emails="emails" />
         <router-view v-if="" :mail="openMail" />
     </section>
     `,

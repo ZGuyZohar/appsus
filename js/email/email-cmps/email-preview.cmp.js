@@ -4,7 +4,7 @@ export default {
             <span> {{mail.email}} </span>
             <span> {{mail.subject}} </span>
             <span @click.stop="toggleRead">✉</span>    
-</router-link>
+    </router-link>
     
     `,
     props: ['mail'],
