@@ -16,3 +16,13 @@ grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
     border: 1px solid gray;
     border-radius: 5px;
 }
+
+.keep-open-note {
+    background-color: rgb(239, 243, 243,0.4);
+height: 350px;
+width: 300px;
+
+top: 200px;
+border: 1px solid black;
+margin: 0 auto;
+}

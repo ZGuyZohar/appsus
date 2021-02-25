@@ -1,25 +1,33 @@
+import {
+    keepService
+} from '../services/keep-service.js'
 
 export default {
-    props: ['info'],
     template: `
 <section class="keep-note-txt">
-
-    <div :bind="note" @change.prevent="reportNote" @setNote="setAns($event)">{{info}}</div>
-
+    {{note.type}}
+    <form>
+    <input type="text" v-model="note.txt"  placeholder="enter text"  @change="reportNote">
+    <button @click.prevent="saveNote()">Save</button>
+</form>
       </section>
     `,
     data() {
         return {
-            note: '',
+            note: {
+                id: keepService.makeId(8),
+                type: 'noteTxt',
+                 txt:' '
+                }
            
-            
-    }
+    
+}
 },
 methods: {
     reportNote() {
         this.$emit('setNote' , this.note)
     },
-    setAns() {
+    setNote() {
         console.log('check')
 }
 }
