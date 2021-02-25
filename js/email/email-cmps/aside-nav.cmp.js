@@ -6,6 +6,7 @@ export default {
     <section>
         <ul>
             <li @click="composeMail">Compose</li>
+            <li v-if="emails.length">Read: {{read}} </li>
             <li @click="filterBy('inbox')">Inbox</li>
             <li>Starred</li>
             <li @click="filterBy('sent')">Sent</li>
@@ -22,13 +23,16 @@ export default {
         </section>
     </section>
     `,
+    props: ['emails', 'mail'],
     data(){
         return {
             getMailComposer: null,
             name: '',
             email: '',
             subject: '',
-            body: ''            
+            body: '',
+            read: 0,
+            currMail: null         
         }
     },
     methods: {
@@ -49,10 +53,29 @@ export default {
         filterBy(filter){
             this.$emit('filter', filter)
             // if(this.$router.history.current.path !== '/email') this.$router.push('/email/').catch(() => {})
+        },
+        amountRead(){
+            this.read = 0
+            this.emails.forEach((mail) => {
+                if(mail.isRead) this.read += 1;
+            })            
         }
     },
     created(){
         const composer = utilService.loadFromStorage('composer');
         this.getMailComposer = composer;
+        this.amountRead()
+    },
+    watch: {
+        emails(){
+            this.amountRead()
+        },
+        'mail.isRead'(){
+            this.amountRead()
+        },
+        mail(){
+            this.amountRead()
+        }
+   
     }
 }

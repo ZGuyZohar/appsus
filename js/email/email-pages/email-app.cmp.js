@@ -6,14 +6,16 @@ import { eventBus } from '../../services/event-bus-service.js'
 export default {
     template: `
     <section class="email">
-        <aside-nav @filter="setFilter" @sent="sendMail" />
-        <mail-list v-if="emails" @isOpen="updateMail" :emails="mailsToShow" />
+        <aside-nav :mail="currMail" :emails="emails" @filter="setFilterBySent" @sent="sendMail" />
+        <mail-list v-if="emails" @filter="setFilterByRead" @isOpen="updateMail" :emails="mailsToShow" />
     </section>
     `,
     data(){
         return {
             emails: [],
-            filterBy: null
+            filterBy: null,
+            filterByRead: null,
+            currMail: null
         }
     },
     methods: {
@@ -23,6 +25,7 @@ export default {
             
         },
         updateMail(currMail){
+            this.currMail = currMail
             emailService.getIdxById(currMail.id)
             .then(idx => {
                 this.emails[idx].isRead = currMail.isRead;
@@ -34,28 +37,41 @@ export default {
             emailService.save(newMail)
             .then(this.loadEmails)
         },
-        setFilter(filter){
+        setFilterBySent(filter){
             this.filterBy = filter;
-            console.log('worked!', filter);
+        },
+        setFilterByRead(filter){
+            this.filterByRead = filter
         }
     },
     computed: {
         mailsToShow(){
             if(this.filterBy === 'inbox' || !this.filterBy) {
-                return this.emails.filter(mail => {
+                const sentBy = this.emails.filter(mail => {
                     return !mail.isSent
                 })
+                if(this.filterByRead){
+                    return this.emails.filter(mail => {
+                        return mail.isRead && !mail.isSent
+                    })
+                } else return sentBy
             }
             if(this.filterBy === 'sent'){
-                return this.emails.filter(mail => {
+                const sentBy = this.emails.filter(mail => {
                     return mail.isSent
                 })
+                if(this.filterByRead){
+                    return this.emails.filter(mail => {
+                        return mail.isRead && mail.isSent
+                    })
+                } else return sentBy
+                
             }
         }
     },
     created(){
         this.loadEmails();
-        eventBus.$on('send-filter', filter => {return this.setFilter(filter)})
+        eventBus.$on('send-filter', filter => {return this.setFilterBySent(filter)})
     },
     destroyed(){
             eventBus.$off('send-filter', (filter) => {

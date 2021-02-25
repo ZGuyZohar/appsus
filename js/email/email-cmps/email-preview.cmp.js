@@ -3,10 +3,10 @@
 export default {
     template: `
      <router-link to="/email" class="preview" @click.native="openMail" :class="readClass" >  
-            <span> {{mail.name}} </span>
-            <span> {{mail.email}} </span>
-            <span> {{mail.subject}} </span>
-            <span> {{mail.sentAt}} </span>
+            <td> {{mail.name}} </td>
+            <td> {{mail.email}} </td>
+            <td> {{mail.subject}} </td>
+            <td> {{mail.sentAt}} </td>
             <span @click.stop="toggleRead">✉</span>    
     </router-link>
     `,
