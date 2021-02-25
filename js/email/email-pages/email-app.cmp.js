@@ -7,7 +7,7 @@ export default {
     template: `
     <section class="email">
         <aside-nav :mail="currMail" :emails="emails" @filter="setFilterBySent" @sent="sendMail" />
-        <mail-list v-if="emails" @filter="setFilterByRead" @isOpen="updateMail" :emails="mailsToShow" />
+        <mail-list v-if="emails" @removeMail="removeMail" @sortBy="sortBy" @filter="setFilterByRead" @isOpen="updateMail" :emails="mailsToShow" />
     </section>
     `,
     data(){
@@ -15,14 +15,18 @@ export default {
             emails: [],
             filterBy: null,
             filterByRead: null,
-            currMail: null
+            filterByTxt: '',
+            currMail: null,
+            showToggle: {
+                byName: false,
+                byDate: false
+            }
         }
     },
     methods: {
         loadEmails(){
             emailService.query()
             .then(emails => this.emails = emails)
-            
         },
         updateMail(currMail){
             this.currMail = currMail
@@ -33,39 +37,81 @@ export default {
             })
             .then((mail) => emailService.updateMail(mail))
         },
+        removeMail(mailId){
+            emailService.remove(mailId)
+            .then(this.loadEmails);
+        },
         sendMail(newMail){
             emailService.save(newMail)
             .then(this.loadEmails)
         },
         setFilterBySent(filter){
-            this.filterBy = filter;
+            this.filterBy = filter
         },
-        setFilterByRead(filter){
-            this.filterByRead = filter
+        setFilterByRead(filter, mode){
+            if (mode===0) {
+                this.filterByRead = filter;
+            }
+           if(mode===1) {
+               this.filterByTxt = filter;
+            }            
+        },
+        sortBy(mode){
+            if(mode === 0){
+                this.showToggle.byName = !this.showToggle.byName
+                if(this.showToggle.byName){
+                    return this.emails.sort((mail1, mail2) => {
+                        return mail1.subject.localeCompare(mail2.subject);
+                    })
+                } else {
+                    return this.emails.sort((mail1, mail2) => {
+                        return mail2.subject.localeCompare(mail1.subject);
+                    })
+                }
+            } else {
+                this.showToggle.byDate = !this.showToggle.byDate
+                if (this.showToggle.byDate) {
+                    return this.emails.sort((mail1, mail2) => {
+                        return mail1.sentAt - mail2.sentAt;
+                    });
+                } else {
+                    return this.emails.sort((mail1, mail2) => {
+                        return mail2.sentAt - mail1.sentAt;
+                    });
+                }
+            }
         }
     },
     computed: {
         mailsToShow(){
-            if(this.filterBy === 'inbox' || !this.filterBy) {
-                const sentBy = this.emails.filter(mail => {
+            let sentBy = this.emails
+            if(this.filterBy === 'inbox' || !this.filterBy && !this.filterByTxt) {
+                sentBy = this.emails.filter(mail => {
                     return !mail.isSent
                 })
                 if(this.filterByRead){
-                    return this.emails.filter(mail => {
+                    sentBy = this.emails.filter(mail => {
                         return mail.isRead && !mail.isSent
                     })
-                } else return sentBy
+                } 
+                return sentBy
             }
-            if(this.filterBy === 'sent'){
-                const sentBy = this.emails.filter(mail => {
+            if(this.filterBy === 'sent' && !this.filterByTxt){
+                sentBy = this.emails.filter(mail => {
                     return mail.isSent
                 })
                 if(this.filterByRead){
-                    return this.emails.filter(mail => {
+                    sentBy = this.emails.filter(mail => {
                         return mail.isRead && mail.isSent
                     })
-                } else return sentBy
-                
+                }
+                return sentBy
+            }
+            if(this.filterByTxt) {
+                const searchStr = this.filterByTxt.toLowerCase()
+                return this.emails.filter(mail => {
+                    if (mail.subject.toLowerCase().includes(searchStr)) return mail
+                })
             }
         }
     },

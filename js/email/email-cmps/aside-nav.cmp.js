@@ -3,12 +3,11 @@ import {emailService} from '../services/email-storage-service.js'
 
 export default {
     template: `
-    <section>
+    <section class="aside-nav">
         <ul>
             <li @click="composeMail">Compose</li>
-            <li v-if="emails.length">Read: {{read}} </li>
+            <li v-if="emails.length" class="read-count">Read: {{read}} </li>
             <li @click="filterBy('inbox')">Inbox</li>
-            <li>Starred</li>
             <li @click="filterBy('sent')">Sent</li>
         </ul>
         <section v-if="getMailComposer" class="composer">

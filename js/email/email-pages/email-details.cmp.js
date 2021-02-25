@@ -5,7 +5,7 @@ import { eventBus } from '../../services/event-bus-service.js'
 export default {
     template: `
     <section class="email">
-        <aside-nav @filter="setFilter" />
+        <aside-nav :emails="emails" @filter="setFilter" />
         <ul v-if="mail"> 
             <li>{{mail.email}}  <span @click="removeMail">Delete</span></li>
             <li>{{mail.name}} - {{mail.sentAt}} </li>
@@ -16,10 +16,15 @@ export default {
     `,
     data(){
         return {
-            mail: null
+            mail: null,
+            emails: null
         }
     },
     methods: {
+        loadEmails(){
+            emailService.query()
+            .then(emails => this.emails = emails)  
+        },
         removeMail(){
             emailService.remove(this.mail.id);
             this.$router.push('/email')
@@ -37,6 +42,7 @@ export default {
         const id = this.$route.params.id
         emailService.getById(id)
             .then(mail => this.mail = mail)
+            this.loadEmails()
     }
 
 }
