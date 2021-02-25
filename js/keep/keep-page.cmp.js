@@ -13,24 +13,24 @@ export default {
     <section  class="keep-page">
     <h1>Welcome to keep</h1>
    
-    <note-txt   @setNote="saveNote" ></note-txt>
     <!-- <input type="text" placeholder="Enter Your Note" > -->
-    <button @click="openTxtNote">TEXT</button>
-    <button @click="openImgNote">IMG</button>
+    <note-txt   @setNote="saveNote" ></note-txt>
+    <note-img   @setImg="saveNote" ></note-img>
+    
     <div class="keep-cards">
-      
-        <div class="keep-open-note" v-if="isClicked">
-          
-<div class="keep-card"  v-for="(note, idx) in notes"> <li > {{note.txt}} </li>  </div>
-<div class="keep-card"  >   <button @click="removeNote">Delete</button></div>
-        
+<div class="keep-card"  v-for="(note, idx) in notes"> <li > {{note.txt}} </li>
+<button class="keep-btn delete" @click="removeNote(note)">Delete</button>
+<button class="keep-btn"  @click="UpdateNote(note)">Update</button>
+</div>
+<div class="keep-open-note" v-if="isClicked">
+<form @submit.prevent="saveNote">
+            <input type="text" placeholder="edit text" v-model="noteToUpdate.txt">
+            <input type="image" placeholder="img adress" :src="noteToUpdate.image">
+            <button class="keep-btn">save</button>
+        </form>
+<button class="keep-btn" @click="close">X</button>
+</div>
 
-  <!-- <label for="txt">Your text: </label>
-  <input type="text" name="txt" v-model="note.txt"><br><br>
-  <!-- <button @click="saveNote">Save</button> -->
-  <!-- <button @click="close">X</button> --> 
-  
- 
 </div>
                     <!-- <component class="keep-card" :is="note.type" :bind="note.info.txt" ></component> -->
                     </div>
@@ -40,61 +40,57 @@ export default {
 
     data() {
         return {
+            noteToUpdate:{
+                txt:''
+            },
             isType: null,
             isClicked: false,
-            notes:[]
-
-
+            notes: []
         }
     },
     methods: {
-     
+
         close() {
-            this.isClicked= false
+            this.isClicked = false
         },
-        loadNotes(){
+        loadNotes() {
             keepService.query()
-            .then(notes => this.notes = notes)
-      
+                .then(notes => this.notes = notes)
+
+        },
+        UpdateNote(note) {
+            console.log('clicked')
+            this.isClicked = true
         },
 
-        openTxtNote() {
-            console.log('opening')
-            this.isClicked = true
-            // console.log('adding')
-            // keepService.createNote()
-            // this.loadNotes()
-        },
+  
         saveNote(note) {
-            console.log(note)
+            keepService.updateNote(note)
+                .then(() => this.loadNotes())
+                // this.noteToUpdate = keepService.getEmptyNote()
             console.log(this.notes)
-            
-            // this.isClickedNote = false
-           keepService.save(note)
-           .then(this.loadNotes())
-           console.log(this.notes)
-        
+
 
         },
         openImgNote() {
             console.log('img')
         },
-        removeNote() {
+        removeNote(note) {
             console.log('deleting')
-            keepService.remove(this.note.id)
-            // .then(() => this.loadNotes())
+            keepService.remove(note.id)
+                .then(() => this.loadNotes())
         },
         addNote() {
             console.log('adding')
             this.notes.push(this.note)
             this.isClickedNote = false
             this.note = keepService.createNote()
-            //  this.notes.push(this.)
+
         }
     },
 
     created() {
-        //     this.loadNotes()
+        this.loadNotes()
     },
     components: {
         noteTxt,

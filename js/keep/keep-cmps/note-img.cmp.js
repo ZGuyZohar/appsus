@@ -1,19 +1,32 @@
+import {
+    keepService
+} from '../services/keep-service.js'
+
+
+
 export default {
     props: [''],
     template: `
 <section class="keep-note-img">
-   
-<div :bind="note" @change.prevent="reportNote">img</div>
+
+<img  width="300px" :src="note.url" />
       </section>
     `,
     data() {
         return {
-            note: ''
-    }
+            note: {
+                id: keepService.makeId(8),
+                type: 'noteImg',
+                 url: ''
+                }
+           
+    
+}
 },
 methods: {
     reportNote() {
-        this.$emit('setNote' , this.note)
-    }
+        this.$emit('setImg' , this.note)
+    },
+ 
 }
 }

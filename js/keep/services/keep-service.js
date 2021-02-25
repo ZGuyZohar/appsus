@@ -10,12 +10,10 @@ export const keepService = {
     getById,
     getIdxById,
     updateNote,
-    save
+    save,
+    getEmptyNote
 }
 
-// function getById() {
-//     return notes
-// }
 
 function query() {
     return storageService.query(NOTES_KEY)
@@ -37,7 +35,10 @@ function createNote() {
     return note
 }
 
+function getEmptyNote() {
+    return { id: makeId(8), type: '', isPinned:true ,txt: '',url:''  }
 
+}
 
 
 
@@ -75,9 +76,9 @@ function remove(noteId) {
 //     {
 //         id: makeId(length = 8),
 //     type: "noteImg",
-//     info: {
-//     url: "http://some-img/me",
-//     title: "Me playing Mi"
+    // info: {
+    // url: "http://some-img/me",
+    // title: "Me playing Mi"
 //     },
 //     style: {
 //     backgroundColor: "#00d"
