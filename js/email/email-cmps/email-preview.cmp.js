@@ -2,18 +2,19 @@
 
 export default {
     template: `
-     <router-link to="/email" class="preview" @click.native="openMail" :class="readClass" >  
+     <router-link to="/email" class="preview" @mouseenter.native="showFeatures" @mouseleave.native="hideFeatures" @click.native="openMail" :class="readClass" >  
             <td> {{mail.name}} </td>
             <td> {{mail.email}} </td>
             <td> {{mail.subject}} </td>
-            <td> {{mail.sentAt}} </td>
-            <span @click.stop="toggleRead">✉</span>    
+            <td> {{mail.sentAtToShow}} </td>
+            <td class="features"><span v-if="toggleFeatures" @click.stop="removeMail">🗑</span> <span v-if="toggleFeatures" @click.stop="toggleRead">✉</span>  </td>  
     </router-link>
     `,
     props: ['mail'],
     data(){
         return {
             isOpen: false,
+            toggleFeatures: false
         }
     },
     methods: {
@@ -27,13 +28,22 @@ export default {
             this.mail.isRead = !this.mail.isRead
             this.$emit('isOpen', this.mail)
         },
+        removeMail(){
+            this.$emit('removeMail', this.mail.id)
+        },
         clickedMail(){
             if(this.isOpen) this.$router.push('/email/' + this.mail.id)
+        },
+        showFeatures(){
+           this.toggleFeatures = true;
+        },
+        hideFeatures(){
+            this.toggleFeatures = false;
         }
     },
     computed: {
         readClass(){
             return {read : this.mail.isRead === true}
-        },
+        }
     }
 }

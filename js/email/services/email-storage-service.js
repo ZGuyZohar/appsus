@@ -69,7 +69,8 @@ function _createMail(name, email, subject, body ) {
         subject,
         body,
         isRead: false,
-        sentAt: new Date().toLocaleDateString(),
+        sentAtToShow: new Date().toLocaleDateString(),
+        sentAt: new Date().getTime(),
         isSent: true
     }
     return mail;
@@ -84,7 +85,8 @@ const gMails = [
         body: `Reply directly to this email to comment, and CC teammates to add them as collaborators.
         If you want to stop receiving notifications about this task, you can remove yourself from it.`, 
         isRead: false, 
-        sentAt : new Date().toLocaleDateString(),
+        sentAtToShow : new Date('September 14, 1997 12:24:00').toLocaleDateString(),
+        sentAt: new Date('September 14, 1997 12:24:00').getTime(),
         isSent: false
       },
       {
@@ -97,7 +99,8 @@ const gMails = [
         Thanks!
         Sincerely, Yossi Bob`, 
         isRead: false,
-        sentAt : new Date().toLocaleDateString(),
+        sentAtToShow : new Date('April 20, 2020 12:24:00').toLocaleDateString(),
+        sentAt : new Date('April 20, 2020 12:24:00').getTime(),
         isSent: false
       },
       {
@@ -108,7 +111,8 @@ const gMails = [
         body: `Where were you?! We were all waiting for you and finished the assignment by ourselves. 
         The teacher is pissed!`, 
         isRead: false, 
-        sentAt : new Date().toLocaleDateString(),
+        sentAtToShow : new Date('December 17, 1995 03:24:00').toLocaleDateString(),
+        sentAt: new Date('December 17, 1995 03:24:00').getTime(),
         isSent: false
       }
 ]
