@@ -1,6 +1,7 @@
 import createNote from './keep-cmps/create-note.cmp.js'
 import noteTxt from './keep-cmps/note-txt.cmp.js'
-// import noteTodos from './keep-cmps/note-todos.cmp.js'
+import noteVideo from './keep-cmps/note.video.cmp.js'
+import noteAudio from './keep-cmps/note-audio.cmp.js'
 import noteImg from './keep-cmps/note-img.cmp.js'
 import { keepService } from './services/keep-service.js'
 
@@ -12,8 +13,9 @@ export default {
     <h1>Welcome to keep</h1>
         <create-note @setNote="addNote"/>
         <main class="notes-container" >
-            <template v-for="note in notes"> 
-                <component @updateTxt="updateNote" :is="note.type" :note="note" />
+            <template v-for="note in notes" > 
+                <component @updateTxt="updateNote" :is="note.type" :note="note" @deleteTxt="removeNote(note)" />
+             
             </template>
         </main>
     </section>
@@ -55,11 +57,12 @@ export default {
         // openImgNote() {
         //     console.log('img')
         // },
-        // removeNote(note) {
-        //     console.log('deleting')
-        //     keepService.remove(note.id)
-        //         .then(() => this.loadNotes())
-        // },
+        removeNote(note) {
+            console.log('deleting')
+            keepService.remove(note.id)
+                .then(() => this.loadNotes())
+        },
+
         addNote(note) {
             keepService.save(note)
             .then(this.loadNotes)
@@ -70,6 +73,8 @@ export default {
         this.loadNotes()
     },
     components: {
+        noteVideo,
+        noteAudio,
         noteTxt,
         noteImg,
         createNote
