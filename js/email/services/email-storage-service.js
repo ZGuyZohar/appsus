@@ -114,5 +114,39 @@ const gMails = [
         sentAtToShow : new Date('December 17, 1995 03:24:00').toLocaleDateString(),
         sentAt: new Date('December 17, 1995 03:24:00').getTime(),
         isSent: false
-      }
+      },
+      {
+        id: storageService._makeId(),
+        name: 'Rick Astley',
+        email: 'rickboi@yahoo.com',
+        subject: 'Never gonna give you up', 
+        body: `You know the rules, And so do I!! Haha great party last night! `, 
+        isRead: false, 
+        sentAtToShow : new Date('May 23, 2020 14:24:00').toLocaleDateString(),
+        sentAt: new Date('May 23, 2020 14:24:00').getTime(),
+        isSent: false
+      },
+      {
+        id: storageService._makeId(),
+        name: 'Pepitoz Vidal',
+        email: 'pepitoz93@yahoo.com',
+        subject: 'Rick Astley hit on my girlfriend last night!', 
+        body: `Usually I'd be mad about something like this.. but it's Rick Astley!!!
+        I can show off that Rick Astley hit on my girlfriend! Great party!! `, 
+        isRead: false, 
+        sentAtToShow : new Date('May 23, 2020 10:20:00').toLocaleDateString(),
+        sentAt: new Date('May 23, 2020 10:20:00').getTime(),
+        isSent: false
+      },
+      {
+        id: storageService._makeId(),
+        name: 'Butters Stotch',
+        email: 'coolbutters@southpark.com',
+        subject: 'HELLP!!!', 
+        body: `Helpp!! The president is hiding in my closet!!!! `, 
+        isRead: false, 
+        sentAtToShow : new Date('January 3, 2021 22:24:00').toLocaleDateString(),
+        sentAt: new Date('January 3, 2021 22:24:00').getTime(),
+        isSent: false
+      },    
 ]

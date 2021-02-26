@@ -1,0 +1,65 @@
+
+
+.notes-container {
+    display: grid;
+    padding: 60px;
+    width: 100%;
+    gap: 15px;
+    grid-template-columns: repeat(auto-fill, 40px);
+    justify-content: center;
+    /* grid-auto-flow: dense; */
+
+}
+
+/* .notes-container {
+    display: flex;
+    flex-wrap: wrap;
+} */
+
+.note-txt {
+    background-color: rgb(222, 245, 243);
+    border: 1px solid gray;
+    border-radius: 5px;
+    grid-column: auto / span 4;
+    grid-row: auto / span 1;
+    overflow-wrap: break-word;
+
+}
+
+.note-img {
+    background-color: rgb(181, 207, 194);
+    border: 1px solid gray;
+    border-radius: 5px;
+    grid-column: auto / span 4;
+    grid-row: auto / span 4;
+
+}
+
+.note-img h3 {
+    display: inline;
+}
+
+.note-img img {
+    width: 100%;
+    max-height: 300px;
+    max-width: 300px;
+}
+
+
+.keep-btn {
+    background-color: lightblue;
+    border-radius: 5px;
+}
+
+.keep-btn:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.keep-btn.delete {
+    background-color: rgb(255, 72, 72);
+}
+
+#image-picker {
+    display: none;
+}

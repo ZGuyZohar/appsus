@@ -1,4 +1,4 @@
-@import '../js/keep/styles/keep.css';
+@import './keep/keep.css';
 @import './email/email.css';
 
 html *{

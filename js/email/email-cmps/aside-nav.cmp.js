@@ -13,7 +13,7 @@ export default {
         <section v-if="getMailComposer" class="composer">
             <button @click="closeComposer">Close</button>
             <form @submit.prevent="createMail(name, email, subject, body)"  >
-                <input type="email" v-model="email" placeholder="Your Email" />
+                <input type="email" v-model="email" placeholder="To: 'e.g. example@gmail.com'" />
                 <input type="text" v-model="name" placeholder="From" />
                 <input type="text" v-model="subject" placeholder="Subject" />
                 <textarea rows="23" v-model="body" cols="70"> </textarea>

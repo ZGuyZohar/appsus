@@ -24,8 +24,7 @@ function createNote() {
         id: makeId(length = 8),
         type: 'noteTxt',
         isPinned: true,
-            txt: ''
-        
+            txt: ''     
     }
     query()
     .then(notes=> {

@@ -1,32 +1,26 @@
-import {
-    keepService
-} from '../services/keep-service.js'
-
-
 
 export default {
-    props: [''],
+    props: ['note'],
     template: `
-<section class="keep-note-img">
-
-<img  width="300px" :src="note.url" />
-      </section>
+<section class="note-img">
+    <h3 @click="toggleInput">{{note.info.txt}} </h3>
+    <input type="text" @change="updateTxt" v-if="showInput" v-model="txt"/>
+    <img :src="note.info.url" />
+</section>
     `,
-    data() {
+    data(){
         return {
-            note: {
-                id: keepService.makeId(8),
-                type: 'noteImg',
-                 url: ''
-                }
-           
-    
-}
-},
-methods: {
-    reportNote() {
-        this.$emit('setImg' , this.note)
+            showInput: false,
+            txt: ''
+        }
     },
- 
-}
+    methods: {
+        toggleInput(){
+            this.showInput = true;
+        },
+        updateTxt(){
+            this.$emit('updateTxt', this.txt, this.note)
+            this.showInput = false;
+        }
+    }
 }
