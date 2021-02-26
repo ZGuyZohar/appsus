@@ -6,9 +6,9 @@ export default {
     <section class="aside-nav">
         <ul>
             <li @click="composeMail">Compose</li>
-            <li v-if="emails.length" class="read-count">Read: {{read}} </li>
             <li @click="filterBy('inbox')">Inbox</li>
             <li @click="filterBy('sent')">Sent</li>
+            <li v-if="emails.length" class="read-count">Read: {{readInPercent}} </li>
         </ul>
         <section v-if="getMailComposer" class="composer">
             <button @click="closeComposer">Close</button>
@@ -58,6 +58,11 @@ export default {
             this.emails.forEach((mail) => {
                 if(mail.isRead) this.read += 1;
             })            
+        }
+    },
+    computed: {
+        readInPercent(){
+            return parseInt(this.read / this.emails.length  * 100) + '%'
         }
     },
     created(){

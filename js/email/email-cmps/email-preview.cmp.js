@@ -3,18 +3,17 @@
 export default {
     template: `
      <router-link to="/email" class="preview" @mouseenter.native="showFeatures" @mouseleave.native="hideFeatures" @click.native="openMail" :class="readClass" >  
-            <td> {{mail.name}} </td>
-            <td> {{mail.email}} </td>
-            <td> {{mail.subject}} </td>
-            <td> {{mail.sentAtToShow}} </td>
-            <td class="features"><span v-if="toggleFeatures" @click.stop="removeMail">🗑</span> <span v-if="toggleFeatures" @click.stop="toggleRead">✉</span>  </td>  
-    </router-link>
+            <li> {{mail.name}} </li>
+            <li class="subject"> {{mail.subject}} </li>
+            <li class="sent-at"> {{mail.sentAtToShow}} </li>
+            <div class="features"><span v-if="toggleFeatures" @click.stop="removeMail">🗑</span> <span v-if="toggleFeatures" @click.stop="toggleRead">✉</span>  </div>  
+        </router-link>
     `,
     props: ['mail'],
     data(){
         return {
             isOpen: false,
-            toggleFeatures: false
+            toggleFeatures: false,
         }
     },
     methods: {
@@ -29,7 +28,7 @@ export default {
             this.$emit('isOpen', this.mail)
         },
         removeMail(){
-            this.$emit('removeMail', this.mail.id)
+            this.$emit('removeMail', this.mail.id);
         },
         clickedMail(){
             if(this.isOpen) this.$router.push('/email/' + this.mail.id)

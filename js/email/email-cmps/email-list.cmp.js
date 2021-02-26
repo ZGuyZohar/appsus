@@ -3,26 +3,30 @@ import mailPreview from './email-preview.cmp.js'
 export default {
     template: `
 <section class="list-container">
-    <div>
-        <label for="search">Search for mail: </label> 
-        <input type="text" id="search" v-model="filterBy.txt" placeholder="Search Mail">
-        <label for="by-read">Filter By Read?</label>
-        <input type="checkbox" v-model="filterBy.read" />
+    <div class="filter">
+        <div>
+            <label for="search">Search for mail: </label> 
+            <input type="text" id="search" v-model="filterBy.txt" placeholder="Search by subject">
+        </div>
+        <div>        
+            <label for="by-read">Filter By Read?</label>
+            <input type="checkbox" v-model="filterBy.read" />
+        </div>
     </div>
-    <table>
-        <tr class="list-header">
-            <td>Name</td>
-            <td>Email</td>
-            <td @click="toSortBy(0)">Subject</td>
-            <td @click="toSortBy(1)">Date</td>
-            <td> </td>
-        </tr>
-        <tbody class="list">
-            <template v-if="emails"  v-for="mail in emails">
+    <main>
+        <div>
+            <ul class="list-header">
+                <li>Name</li>
+                <li @click="toSortBy(0)">Subject</li>
+                <li @click="toSortBy(1)">Date</li>
+            </ul>
+        </div>
+        <ul class="list">
+            <template v-if="emails" class="list-item" v-for="mail in emails">
                 <mail-preview @removeMail="removeMail" @isOpen="updateMail" :mail="mail" />
             </template>
-        </tbody>
-    </table>
+        </ul>
+    </main>
 </section>
     `,
     props: ['emails'],

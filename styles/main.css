@@ -1,6 +1,9 @@
 @import '../js/keep/styles/keep.css';
 @import './email/email.css';
 
+html *{
+    box-sizing: border-box;
+}
 
 body {
     margin: 0 auto;

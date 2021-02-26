@@ -6,10 +6,10 @@ export default {
     template: `
     <section class="email">
         <aside-nav :emails="emails" @filter="setFilter" />
-        <ul v-if="mail"> 
-            <li>{{mail.email}}  <span @click="removeMail">Delete</span></li>
-            <li>{{mail.name}} - {{mail.sentAt}} </li>
+        <ul class="mail-details" v-if="mail"> 
             <li>{{mail.subject}} </li>
+            <li>{{mail.name}} - {{mail.email}}</li>
+            <li class="date-delete"><small>{{mail.sentAtToShow}}</small> <span @click="removeMail">Delete</span></li>
             <li><pre>{{mail.body}}</pre> </li>
         </ul>
     </section>
