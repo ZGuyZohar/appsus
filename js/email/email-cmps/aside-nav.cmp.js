@@ -46,7 +46,7 @@ export default {
             utilService.saveToStorage('composer', this.getMailComposer);
         },
         createMail(name, email, subject, body){
-            const newMail = emailService._createMail(name, email, subject, body);
+            const newMail = emailService._createMail(subject, body, name, email);
             this.getMailComposer = false;
             utilService.saveToStorage('composer', this.getMailComposer);
             this.$emit('sent', newMail);

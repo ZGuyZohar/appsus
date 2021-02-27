@@ -53,6 +53,7 @@ button {
 
 .email .list-header li:last-child {
     width: 17%;
+    right: 1.5%;
 }
 
 .email .list-header li:not(:first-child):not(:last-child) {
@@ -75,6 +76,7 @@ button {
 
 .email .list .sent-at {
     width: 17%;
+    padding-right: 4%;
 }
 
 .email .list-container {
@@ -124,8 +126,8 @@ button {
     width: 40px;
     position: absolute;
     font-size: 1.3rem;
-    right: 1px;
     display: flex;
+    right: 2%;
 }
 
 .email .features span:active {
@@ -315,6 +317,16 @@ button {
     height: 500px;
 }
 
+.mail-details.reply form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.mail-details.reply form li:first-child {
+    width: 100px;
+}
+
 .mail-details.reply li:last-child {
     height: 300px;
     width: 100%;
@@ -325,6 +337,14 @@ button {
     width: 100%;
 }
 
+.mail-details.reply button {
+    width: 80px;
+    background-color: #404040;
+    border-radius: 2em;
+    color: white;
+    font-size: 1rem;
+    padding: 2px;
+}
 
 @media (max-width: 920px) {
     .email .list-header {
@@ -336,6 +356,11 @@ button {
         flex-direction: column;
         justify-content: center;
         padding-left: 2%;
+    }
+
+    .email .features {
+        right: 5%;
+        top: 19px;
     }
 
     .email .name {

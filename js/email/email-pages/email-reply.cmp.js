@@ -5,16 +5,18 @@ import { eventBus } from '../../services/event-bus-service.js'
 export default {
     template: `
     <section class="email">
-        <aside-nav :emails="emails" @filter="setFilter" />
+        <aside-nav v-if="emails" :emails="emails" @filter="setFilter" />
         <ul class="mail-details reply" v-if="mail"> 
             <li>{{mail.subject}} </li>
             <li>{{mail.name}} - {{mail.email}}</li>
             <li class="date-delete"><small>{{mail.sentAtToShow}}</small> <span @click="removeMail">Delete</span></li>
 <hr>        
-            <li> <input type="text" v-model="" />
-            <li><textarea v-model="txtToReply">{{txtForReply}}</textarea> </li>
+            <form @submit.prevent="createMail(subjectToReply, bodyToReply)">
+            <li> <input type="text" v-model="subjectToReply" />
+            <li><textarea v-if="bodyToReply" v-model="bodyToReply">{{bodyToReply}}</textarea> </li>
+            <button>Submit</button>
+            </form>
         </ul>
-        <pre>{{txtToReply}}</pre>
     </section>`
     ,
     data(){
@@ -23,7 +25,8 @@ export default {
             emails: null,
             addedTxt: ` ===================================================================
 Re:`,
-            txtToReply: ''
+            bodyToReply: '',
+            subjectToReply: 'RE: '
         }
     },
     methods: {
@@ -39,14 +42,23 @@ Re:`,
             this.$router.push('/email/').catch(() => {});
             eventBus.$emit('send-filter', filter) 
         },
-        setTxtToReply(){
-            return this.txtToReply = this.mail.body + this.addedTxt
-        }
+        setbodyToReply(){
+            return this.bodyToReply = this.mail.body + this.addedTxt
+        },
+        createMail(subject, body){
+            const newMail = emailService._createMail(subject, body);
+            newMail.email = this.mail.email;
+            newMail.name = this.mail.name;
+            emailService.save(newMail)
+            this.$router.push('/email')
+            const msg = {
+                    txt: `Email created succesfully`,
+                    type: 'success'
+                }
+            eventBus.$emit('show-msg', msg)
+        },
     },
     computed: {
-        txtForReply(){
-            return this.mail.body + this.addedTxt
-        }
     },
     components: {
         asideNav
@@ -55,7 +67,7 @@ Re:`,
         const id = this.$route.params.id
         emailService.getById(id)
             .then(mail => this.mail = mail)
-            .then(this.setTxtToReply)
+            .then(this.setbodyToReply)
         this.loadEmails()
     }
 }

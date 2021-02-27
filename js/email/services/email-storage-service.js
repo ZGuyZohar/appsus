@@ -61,7 +61,7 @@ function getNeighsId(id){
     })
 }
 
-function _createMail(name, email, subject, body ) {
+function _createMail(subject, body, name='Guy Zohar', email) {
     const mail = {
         id: storageService._makeId(),
         name,

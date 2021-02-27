@@ -5,14 +5,15 @@ import noteAudio from './keep-cmps/note-audio.cmp.js'
 import noteImg from './keep-cmps/note-img.cmp.js'
 import noteTodos from './keep-cmps/note-todos.cmp.js'
 import { keepService } from './services/keep-service.js'
+import { eventBus } from '../services/event-bus-service.js'
 
 
 export default {
     name: 'keep-page',
     template: `
-    <section  class="keep-page">
+    <section @click.self="removeInputs" class="keep-page">
     <h1>Welcome to keep</h1>
-        <create-note @setNote="addNote"/>
+        <create-note :resetInputs="inputRemover" @inputRemover="toggleInputRemover" @setNote="addNote"/>
         <main class="notes-container" >
             <template v-for="note in notes" > 
                 <component @updateTxt="updateNote" :is="note.type" :note="note" @deleteTxt="removeNote(note)" />
@@ -25,7 +26,8 @@ export default {
         return {         
             isType: null,
             notes: [],
-            currNote: null
+            currNote: null,
+            inputRemover: false
         }
     },
     methods: {
@@ -38,25 +40,32 @@ export default {
             this.currNote = note;
         },
         updateNote(txtToChange, noteToChange, id) {
-            noteToChange.info.txt[id] = txtToChange
-            if(id) noteToChange
+            if(id) noteToChange.info.txt[id] = txtToChange;
+            else noteToChange.info.txt = txtToChange;
             keepService.updateNote(noteToChange)
-            .then(this.loadNotes)
-
+            .then(this.loadNotes);
+            const msg = {
+                        txt: `Note updated succesfully`,
+                        type: 'success'
+                    }
+            eventBus.$emit('show-msg', msg)
         },
-        // saveNote(note) {
-        //     keepService.updateNote(note)
-        //         .then(() => this.loadNotes())
-        //         // this.noteToUpdate = keepService.getEmptyNote()
-        //     console.log(this.notes)
-        // },
-        // openImgNote() {
-        //     console.log('img')
-        // },
+        removeInputs(){
+            this.inputRemover = true;
+        },
+        toggleInputRemover(){
+            console.log('hi');
+            this.inputRemover = false;
+        },
         removeNote(note) {
             console.log('deleting')
             keepService.remove(note.id)
-                .then(() => this.loadNotes())
+                .then(() => this.loadNotes());
+            const msg = {
+                    txt: `Note deleted succesfully`,
+                    type: 'success'
+                }
+            eventBus.$emit('show-msg', msg)
         },
 
         addNote(note) {
