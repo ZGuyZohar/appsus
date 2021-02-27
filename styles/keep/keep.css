@@ -216,4 +216,18 @@ audio {
         width: 200px;
         max-height: 200px;
     }
+
+    .keep-responsive-container {
+        background: rgb(0 0 0 / 30%);
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+    
+    }
+
+    .show-nav {
+        position: unset !important
+    }
 }
