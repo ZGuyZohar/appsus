@@ -4,14 +4,14 @@
 export default {
     props:['info'],
     template: `
-    <section class="note-audio">
-        <h3 class="h3-keep">My audio</h3>
-        <h3 @click="toggleInput"> </h3>
-        <button class="keep-delete audio" @click="deleteTxt">delete</button>
+    <section @click.self="removeInput" class="note note-audio">
+        <h3 class="h3-keep">Audio:</h3>
+        <h3 @click="toggleInput">{{note.info.txt}} </h3>
         <input class="keep-input" type="text" @change="updateTxt" v-if="showInput" v-model="txt" />
         <audio controls>
             <source :src="note.info.audio" type="audio/mpeg">
-</audio>
+        </audio>
+        <button class="keep-delete audio" @click="deleteTxt">Delete</button>
     </section>
     `,
     props: ['note'],
@@ -32,6 +32,9 @@ export default {
         },
         deleteTxt(){
             this.$emit('deleteTxt', this.txt, this.note)
+            this.showInput = false;
+        },
+        removeInput(){
             this.showInput = false;
         }
     }

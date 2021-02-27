@@ -3,12 +3,12 @@
 export default {
     props: ['note'],
     template: `
-<section class="note-img">
-<h3 class="h3-keep">My image:</h3> 
-    <h4 @click="toggleInput">{{note.info.txt}} </h4>
-    <button class="keep-delete" @click="deleteTxt">delete</button>
+<section @click.self="removeInput" class="note note-img">
+    <h3 class="h3-keep">Image:</h3>
+    <h3 @click="toggleInput">{{note.info.txt}} </h3>
     <input class="keep-input" type="text" @change="updateTxt" v-if="showInput" v-model="txt"/>
     <img :src="note.info.url" />
+    <button class="keep-delete" @click="deleteTxt">Delete</button>
 </section>
     `,
     data(){
@@ -27,6 +27,9 @@ export default {
         },
         deleteTxt(){
             this.$emit('deleteTxt', this.txt, this.note)
+            this.showInput = false;
+        },
+        removeInput(){
             this.showInput = false;
         }
     }

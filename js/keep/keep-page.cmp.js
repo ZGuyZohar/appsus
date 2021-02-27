@@ -12,8 +12,7 @@ export default {
     name: 'keep-page',
     template: `
     <section @click.self="removeInputs" class="keep-page">
-    <h1>Welcome to keep</h1>
-        <create-note :resetInputs="inputRemover" @inputRemover="toggleInputRemover" @setNote="addNote"/>
+        <create-note :query="query" :resetInputs="inputRemover" @inputRemover="toggleInputRemover" @setNote="addNote"/>
         <main class="notes-container" >
             <template v-for="note in notes" > 
                 <component @updateTxt="updateNote" :is="note.type" :note="note" @deleteTxt="removeNote(note)" />
@@ -27,7 +26,8 @@ export default {
             isType: null,
             notes: [],
             currNote: null,
-            inputRemover: false
+            inputRemover: false,
+            query: ''
         }
     },
     methods: {
@@ -67,15 +67,18 @@ export default {
                 }
             eventBus.$emit('show-msg', msg)
         },
-
         addNote(note) {
             keepService.save(note)
             .then(this.loadNotes)
+        },
+        getQueryStr(){
+            this.query = this.$route.query.txt;
         }
     },
 
     created() {
         this.loadNotes()
+        this.getQueryStr();
     },
     components: {
         noteVideo,

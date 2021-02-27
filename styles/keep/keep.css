@@ -2,6 +2,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+}
+
+.keep-page ul {
+    padding: 0;
+}
+
+.keep-page li {
+    list-style: none;
+}
+
+.keep-page input {
+    outline: none;
+    margin-bottom: 20px;
+}
+
+.keep-page input:focus {
+    border: 2px solid black;
 }
 
 .notes-container {
@@ -14,6 +32,13 @@
     justify-content: center;
     grid-auto-flow: dense;
 
+}
+
+.note {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
 }
 
 
@@ -46,6 +71,7 @@
     width: 100%;
     max-height: 250px;
     max-width: 250px;
+    padding: 10px;
 }
 
 .note-video {
@@ -100,6 +126,7 @@ audio {
 }
 
 .keep-delete {
+    font-weight: 900;
     margin-bottom: 20px;
     border-radius: 20px;
     background-color: rgb(250, 101, 101);
@@ -126,6 +153,7 @@ audio {
 }
 
 .create-container {
+    margin-top: 40px;
     min-height: 100px;
     display: flex;
     flex-direction: column;
@@ -140,6 +168,7 @@ audio {
 .create-container input {
     width: 205px;
     padding-left: 17px;
+    margin: 0;
 }
 
 .create-container form button {

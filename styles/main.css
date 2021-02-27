@@ -3,6 +3,9 @@
 
 html * {
     box-sizing: border-box;
+    font-size: .875rem;
+    letter-spacing: .25px;
+    font-family: 'Roboto', sans-serif;
 }
 
 body {

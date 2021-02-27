@@ -2,9 +2,9 @@ import { eventBus } from '../../services/event-bus-service.js'
 
 export default {
     template: `
-    <section :class="" class="create-container">
+    <section class="create-container">
         <form @submit.prevent="addNote">
-            <input class="keep-input" type="text" v-model="info.txt" placeholder="Take a note..."/>
+            <input class="keep-input" v-if="!toggleInputs.txt" type="text" v-model="info.txt" placeholder="Take a note..."/>
             <input class="keep-input" v-if="toggleInputs.img" type="text" v-model="info.url" placeholder="Add image..." @change="uploadImage"/>
             <input class="keep-input" v-if="toggleInputs.video" type="text" v-model="info.video" placeholder="Add video http.. not youtube" @change="uploadVideo"/>
             <input class="keep-input" v-if="toggleInputs.audio" type="text" v-model="info.audio" placeholder="Add audio file.." @change="uploadAudio"/>
@@ -19,7 +19,7 @@ export default {
         </ul>
     </section>`
     ,
-    props: ['resetInputs'],
+    props: ['resetInputs', 'query'],
     data(){
         return {
             type: null,
@@ -103,6 +103,7 @@ export default {
             if(mode === 4) {
                 this.toggleInputs = {}
                this.toggleInputs.todos = true 
+               this.toggleInputs.txt = true
             }
         }
     },
@@ -116,5 +117,8 @@ export default {
                 todos: false
             }
         }
+    },
+    created(){
+        if(this.query) this.info.txt = this.query
     }
 }

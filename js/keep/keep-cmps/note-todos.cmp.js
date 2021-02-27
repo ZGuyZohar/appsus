@@ -3,17 +3,14 @@
 export default {
     props:['info'],
     template: `
-    <section class="note-todos">
-        <h3 class="h3-keep">Todo List:</h3>
-       
+    <section @click.self="removeInput" class="note note-todos">
+        <h3 class="h3-keep">Todos:</h3>
         <ul @click="toggleInput" v-for="(todo, idx) in listTodos">
-        <li @click="setCurrTxt(todo, idx)">{{todo}}</li>
-
-        <input class="keep-input" type="text"  @change="updateTxt" v-if="showInput && currTxt.id === idx" v-model="currTxt.txt" />
+            <li @click="setCurrTxt(todo, idx)">{{todo}}</li>
+            <input class="keep-input" type="text"  @change="updateTxt" v-if="showInput && currTxt.id === idx" v-model="currTxt.txt" />
         </ul> 
        
-        <button class="keep-delete" @click="deleteTxt">delete</button>
-         <p>*click text to update</P>
+        <button class="keep-delete" @click="deleteTxt">Delete</button>
     </section>
     `,
     props: ['note'],
@@ -55,6 +52,9 @@ export default {
         },
         createTodos(){
            this.listTodos =  this.note.info.txt 
+        },
+        removeInput(){
+            this.showInput = false;
         }
     },
     created() {

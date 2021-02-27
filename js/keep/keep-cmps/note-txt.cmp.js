@@ -1,11 +1,10 @@
 export default {
     template: `
-    <section class="note-txt">
+    <section @click.self="removeInput" class="note note-txt">
     <h3 class="h3-keep">Note:</h3>
         <h3 @click="toggleInput">{{note.info.txt}} </h3>
-        <button class="keep-delete"  @click="deleteTxt">delete</button> 
-         <input class="keep-input" type="text" @change="updateTxt" v-if="showInput" v-model="txt" />
-      <p>*click text to update</P>
+        <input class="keep-input" type="text" @change="updateTxt" v-if="showInput" v-model="txt" />
+        <button class="keep-delete"  @click="deleteTxt">Delete</button> 
     </section>
     `,
     props: ['note'],
@@ -25,6 +24,9 @@ export default {
         },
         deleteTxt(){
             this.$emit('deleteTxt', this.txt, this.note)
+            this.showInput = false;
+        },
+        removeInput(){
             this.showInput = false;
         }
     }

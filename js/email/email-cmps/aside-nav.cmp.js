@@ -20,6 +20,7 @@ export default {
                     <textarea rows="23" v-model="body" cols="70"> </textarea>
                     <button>Send</button>
                 </form>
+                <button @click="sendToKeep"> test</button>
             </section>
         </div>
     </section>
@@ -61,6 +62,9 @@ export default {
             this.emails.forEach((mail) => {
                 if(mail.isRead) this.read += 1;
             })            
+        },
+        sendToKeep(){
+            this.$router.push({ path: '/keep/keep-page', query: { txt: this.body }})
         }
     },
     computed: {
