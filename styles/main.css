@@ -56,10 +56,55 @@ nav {
     color: #5f6368;
 }
 
+.home-card {
+    height: 300px;
+    width: 300px;
+    border: 1px solid;
+    display: flex;
+    box-shadow: 2px 4px rgb(147, 158, 168);
+    align-items: center;
+    background-color: rgb(252, 248, 248);
+
+}
+
+.home-title {
+    text-decoration: none;
+}
+
+.home-card:hover {
+    opacity: 0.8;
+    cursor: pointer;
+    
+}
+
+.home-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 100px;
+  
+}
+
+.home-container h1{
+    color: rgb(54, 62, 70);
+    margin-left: 100px;
+    margin-bottom: 120px;
+    font-size: 2rem;
+    padding: 20px;
+   
+}
+
+.home-header{
+    font-size: 2rem;
+    margin-top: 50px;
+    color: rgb(54, 62, 70);
+}
+
+
 
 /* FOOTER */
 footer {
-    background-color: rgb(195, 238, 195);
+    background-color: rgb(225, 238, 225);
     position: absolute;
     bottom: 0;
     width: 100%;
@@ -68,10 +113,14 @@ footer {
 }
 
 @media (max-width: 840px) {
-.app-header {
-    justify-content: space-between;
+    .nav-container {
+        margin-right: 50px;
+    }
+    .logo {
+        margin-left: 50px;
+    }
 }
-}
+
 @media (max-width: 540px) {
 
 nav {
@@ -102,6 +151,10 @@ nav {
     transform: translateX(0);
     box-shadow: -3px 3px 3px 0px;
 }
+.logo {
+    margin-left: 50px;
+}
+
 }
 /* USER MSG */
 
