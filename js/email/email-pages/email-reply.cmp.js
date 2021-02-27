@@ -11,7 +11,7 @@ export default {
             <li>{{mail.name}} - {{mail.email}}</li>
             <li class="date-delete"><small>{{mail.sentAtToShow}}</small> <span @click="removeMail">Delete</span></li>
 <hr>        
-            <li> <input type="text" />
+            <li> <input type="text" v-model="" />
             <li><textarea v-model="txtToReply">{{txtForReply}}</textarea> </li>
         </ul>
         <pre>{{txtToReply}}</pre>

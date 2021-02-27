@@ -2,10 +2,11 @@ export default {
     template: `
     <section>
         <form @submit.prevent="addNote">
-            <input type="text" v-model="info.txt" placeholder="Take a note..."/>
-            <input type="text" v-model="info.url" placeholder="Add image..." @change="uploadImage"/>
-            <input type="text" v-model="info.video" placeholder="Add video http.. not youtube" @change="uploadVideo"/>
-            <input type="text" v-model="info.audio" placeholder="Add audio.." @change="uploadAudio"/>
+            <input class="keep-input" type="text" v-model="info.txt" placeholder="Take a note..."/>
+            <input class="keep-input" type="text" v-model="info.url" placeholder="Add image..." @change="uploadImage"/>
+            <input class="keep-input" type="text" v-model="info.video" placeholder="Add video http.. not youtube" @change="uploadVideo"/>
+            <input class="keep-input" type="text" v-model="info.audio" placeholder="Add audio file.." @change="uploadAudio"/>
+            <input class="keep-input" type="text" v-model="info.todos" placeholder="Separate todo list by comma.." @change="uploadTodos"/>
             <button>Add note </button>
         </form>
     </section>`
@@ -17,7 +18,8 @@ export default {
                 txt: '',
                 url:'',
                 video: '',
-                audio: new Audio('/sounds/salamisound-6018270-french-wine-bottle-falls-on.mp3').play()
+                audio: '',
+                todos:''
             }
         }
     },
@@ -27,7 +29,8 @@ export default {
             const newNote = {
                 isPinned: false,
                 info: {
-                    txt: this.info.txt
+                    txt: this.info.txt,
+                  
                 }
             }
             if(!this.type) newNote.type = 'noteTxt'
@@ -40,12 +43,15 @@ export default {
              } else if(this.type === 'noteVideo') {
                 newNote.type = this.type;
                 newNote.info.video = this.info.video
+             } else if(this.type === 'noteTodos') {
+                newNote.type = this.type;
+                newNote.info.txt = this.info.todos.split(',')
             }
             this.info.txt = '';
             this.info.url = '';
             this.info.video = '';
             this.info.audio = '';
-            console.log(newNote);
+            this.info.todos = '';
             this.$emit('setNote' , newNote)
         },
         uploadImage(){
@@ -56,6 +62,9 @@ export default {
         },
         uploadAudio(){
             this.type = 'noteAudio'
+        },
+        uploadTodos(){
+            this.type = 'noteTodos'
         },
     }
 }

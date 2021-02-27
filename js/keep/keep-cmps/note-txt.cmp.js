@@ -1,9 +1,11 @@
 export default {
     template: `
     <section class="note-txt">
+    <h3 class="h3-keep">Note:</h3>
         <h3 @click="toggleInput">{{note.info.txt}} </h3>
-        <button @click="deleteTxt">delete</button> 
-         <input type="text" @change="updateTxt" v-if="showInput" v-model="txt" />      
+        <button class="keep-delete"  @click="deleteTxt">delete</button> 
+         <input class="keep-input" type="text" @change="updateTxt" v-if="showInput" v-model="txt" />
+      <p>*click text to update</P>
     </section>
     `,
     props: ['note'],

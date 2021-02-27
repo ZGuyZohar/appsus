@@ -6,9 +6,10 @@ export default {
     props:['info'],
     template: `
     <section class="note-video">
-        <h3 @click="toggleInput">{{note.info.txt}} </h3>
-        <button @click="deleteTxt">delete</button>
-         <input type="text" @change="updateTxt" v-if="showInput" v-model="txt" />
+    <h3 class="h3-keep">My video</h3>
+        <h3 @click="toggleInput"></h3>
+        <button class="keep-delete" @click="deleteTxt">delete</button>
+         <input class="keep-input" type="text" @change="updateTxt" v-if="showInput" v-model="txt" />
       <iframe width="250"  height="200" :src="note.info.video"></iframe>
     </section>
     `,

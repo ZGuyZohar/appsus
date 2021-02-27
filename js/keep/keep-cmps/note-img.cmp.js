@@ -4,9 +4,10 @@ export default {
     props: ['note'],
     template: `
 <section class="note-img">
-    <h3 @click="toggleInput">{{note.info.txt}} </h3>
-    <button @click="deleteTxt">delete</button>
-    <input type="text" @change="updateTxt" v-if="showInput" v-model="txt"/>
+<h3 class="h3-keep">My image:</h3> 
+    <h4 @click="toggleInput">{{note.info.txt}} </h4>
+    <button class="keep-delete" @click="deleteTxt">delete</button>
+    <input class="keep-input" type="text" @change="updateTxt" v-if="showInput" v-model="txt"/>
     <img :src="note.info.url" />
 </section>
     `,
