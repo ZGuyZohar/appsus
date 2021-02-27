@@ -41,7 +41,15 @@
     justify-content: space-around;
 }
 
-
+.keep-responsive-container{
+    background: rgb(0 0 0 / 30%);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    display: none;
+}
 
 .note-txt {
     background-color: rgb(175, 240, 234);
@@ -102,11 +110,14 @@
 
 
 .keep-btn {
+  
     background-color: lightblue;
     border-radius: 5px;
 }
 
-
+button.keep-transfer{
+background-color: rgb(180, 245, 220);
+}
 
 .keep-btn.delete {
     background-color: rgb(255, 72, 72);
@@ -194,6 +205,10 @@ audio {
     margin-left: 8px;
 }
 
+button.keep-transfer {
+    border-radius: 20px;
+}
+
 @media (max-width: 540px) {
     .notes-container {
         display: flex;
@@ -204,11 +219,11 @@ audio {
         margin: 20px;
     }
 
-    .note-txt {
+    /* .note-txt {
         width: 100%;
         width: 200px;
         max-height: 100px;
-    } */
+    } */ */
 
     .note-video {
 
@@ -218,12 +233,8 @@ audio {
     }
 
     .keep-responsive-container {
-        background: rgb(0 0 0 / 30%);
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 1;
+        display: block;
+       position: fixed;
     
     }
 

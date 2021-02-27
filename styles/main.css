@@ -23,12 +23,16 @@ body {
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid rgb(250, 238, 238);
-   
+  
+}
+
+.nav-container {
+    margin-right: 170px;
 }
 
 nav {
     align-content: center;
-    margin-right: 170px;
+    /* margin-right: 170px; */
     font-size: 1.5rem;
     margin: 10px;
     text-decoration: none;
@@ -38,8 +42,9 @@ nav {
 .logo {
     font-family: Arial;
     text-decoration: none;
-    margin-left: 90px;
+    font-size: 1.5rem;
     color: #383f47;
+    margin-left: 100px;
 }
 
 .nav-links {
