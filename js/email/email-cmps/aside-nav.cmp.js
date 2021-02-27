@@ -18,14 +18,16 @@ export default {
                     <input type="text" v-model="name" placeholder="From" />
                     <input type="text" v-model="subject" placeholder="Subject" />
                     <textarea rows="23" v-model="body" cols="70"> </textarea>
-                    <button>Send</button>
+                    <div class="composer-buttons">
+                        <button>Send</button>
+                        <button @click="sendToKeep">Transfer To Keep</button>
+                    </div>
                 </form>
-                <button @click="sendToKeep"> test</button>
             </section>
         </div>
     </section>
     `,
-    props: ['emails', 'mail'],
+    props: ['emails', 'mail', 'query'],
     data(){
         return {
             getMailComposer: null,
@@ -79,6 +81,11 @@ export default {
         const composer = utilService.loadFromStorage('composer');
         this.getMailComposer = composer;
         this.amountRead()
+        if(this.query) {
+            this.body = this.query
+            this.getMailComposer = true;
+            utilService.saveToStorage('composer', this.getMailComposer);
+        }
     },
     watch: {
         emails(){

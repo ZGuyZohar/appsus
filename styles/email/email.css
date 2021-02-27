@@ -184,6 +184,11 @@ button {
     height: 30px;
 }
 
+.composer .composer-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
 .composer button {
     width: 50px;
     border: 0;
@@ -191,7 +196,11 @@ button {
     border-radius: 2em;
     color: white;
     font-size: 1rem;
-    padding: 2px;
+    padding: 5px;
+}
+
+.composer button:last-child {
+    width: 107px;
 }
 
 /* ASIDE NAV */

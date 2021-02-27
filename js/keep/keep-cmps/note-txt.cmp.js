@@ -5,6 +5,7 @@ export default {
         <h3 @click="toggleInput">{{note.info.txt}} </h3>
         <input class="keep-input" type="text" @change="updateTxt" v-if="showInput" v-model="txt" />
         <button class="keep-delete"  @click="deleteTxt">Delete</button> 
+        <button class="keep-transfer" @click="sendToMail" >Transfer to mail</button>
     </section>
     `,
     props: ['note'],
@@ -28,6 +29,9 @@ export default {
         },
         removeInput(){
             this.showInput = false;
+        },
+        sendToMail(){
+            this.$router.push({ path: '/email/', query: { txt: this.note.info.txt }})
         }
     }
 }

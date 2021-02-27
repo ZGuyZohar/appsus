@@ -6,7 +6,7 @@ import { eventBus } from '../../services/event-bus-service.js'
 export default {
     template: `
     <section class="email">
-        <aside-nav :mail="currMail" :emails="emails" @filter="setFilterBySent" @sent="sendMail" />
+        <aside-nav :query="query" :mail="currMail" :emails="emails" @filter="setFilterBySent" @sent="sendMail" />
         <mail-list v-if="emails" @removeMail="removeMail" @sortBy="sortBy" @filter="setFilterByRead" @isOpen="updateMail" :emails="mailsToShow" />
     </section>
     `,
@@ -20,7 +20,8 @@ export default {
             showToggle: {
                 byName: false,
                 byDate: false
-            }
+            },
+            query: ''
         }
     },
     methods: {
@@ -90,6 +91,9 @@ export default {
                     });
                 }
             }
+        },
+        getQueryStr(){
+            this.query = this.$route.query.txt;
         }
     },
     computed: {
@@ -128,6 +132,7 @@ export default {
     created(){
         this.loadEmails();
         eventBus.$on('send-filter', filter => {return this.setFilterBySent(filter)})
+        this.getQueryStr()
     },
     destroyed(){
             eventBus.$off('send-filter', (filter) => {

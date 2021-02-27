@@ -11,6 +11,7 @@ export default {
         </ul> 
        
         <button class="keep-delete" @click="deleteTxt">Delete</button>
+        <button class="keep-transfer" @click="sendToMail" >Transfer to mail</button>
     </section>
     `,
     props: ['note'],
@@ -21,9 +22,7 @@ export default {
                 txt: '',
                 id: null
             },
-            listTodos: []
-            
-          
+            listTodos: [] 
         }
     },
     methods: {  
@@ -55,10 +54,12 @@ export default {
         },
         removeInput(){
             this.showInput = false;
+        },
+        sendToMail(){
+            this.$router.push({ path: '/email/', query: { txt: this.listTodos.join(' ') }})
         }
     },
     created() {
         this.createTodos()
-        console.log(this.listTodos)
     }
 }

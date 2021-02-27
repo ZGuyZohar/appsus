@@ -106,6 +106,14 @@
     border-radius: 5px;
 }
 
+.keep-transfer {
+    align-self: flex-end;
+    border-radius: 1em;
+    border: 1px solid gray;
+    margin-right: 9px;
+    margin-bottom: 5px;
+    background-color: #bdf8bd;
+}
 
 
 .keep-btn.delete {
@@ -161,12 +169,12 @@ audio {
 
 .create-container ul {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     padding: 0;
 }
 
 .create-container input {
-    width: 205px;
+    width: 236px;
     padding-left: 17px;
     margin: 0;
 }
@@ -175,7 +183,7 @@ audio {
     box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%),
         0 1px 3px 1px rgb(60 64 67 / 15%);
     border-radius: 2em;
-    padding: 7px 10px;
+    padding: 10px 22px;
     cursor: pointer;
     transition: box-shadow .08s;
 }
@@ -185,7 +193,8 @@ audio {
     box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%),
         0 1px 3px 1px rgb(60 64 67 / 15%);
     border-radius: 2em;
-    padding: 7px 10px;
+    width: 138px;
+    padding: 10px 0;
     cursor: pointer;
     transition: box-shadow .08s;
 }
@@ -208,9 +217,9 @@ audio {
         width: 100%;
         width: 200px;
         max-height: 100px;
-    } */
+    }
 
-    .note-video {
+    */ .note-video {
 
         width: 100%;
         width: 200px;
