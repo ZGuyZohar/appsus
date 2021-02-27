@@ -106,14 +106,6 @@
     border-radius: 5px;
 }
 
-.keep-transfer {
-    align-self: flex-end;
-    border-radius: 1em;
-    border: 1px solid gray;
-    margin-right: 9px;
-    margin-bottom: 5px;
-    background-color: #bdf8bd;
-}
 
 
 .keep-btn.delete {
@@ -169,12 +161,12 @@ audio {
 
 .create-container ul {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     padding: 0;
 }
 
 .create-container input {
-    width: 236px;
+    width: 205px;
     padding-left: 17px;
     margin: 0;
 }
@@ -183,7 +175,7 @@ audio {
     box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%),
         0 1px 3px 1px rgb(60 64 67 / 15%);
     border-radius: 2em;
-    padding: 10px 22px;
+    padding: 7px 10px;
     cursor: pointer;
     transition: box-shadow .08s;
 }
@@ -193,8 +185,7 @@ audio {
     box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%),
         0 1px 3px 1px rgb(60 64 67 / 15%);
     border-radius: 2em;
-    width: 138px;
-    padding: 10px 0;
+    padding: 7px 10px;
     cursor: pointer;
     transition: box-shadow .08s;
 }
@@ -217,12 +208,26 @@ audio {
         width: 100%;
         width: 200px;
         max-height: 100px;
-    }
+    } */
 
-    */ .note-video {
+    .note-video {
 
         width: 100%;
         width: 200px;
         max-height: 200px;
+    }
+
+    .keep-responsive-container {
+        background: rgb(0 0 0 / 30%);
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+    
+    }
+
+    .show-nav {
+        position: unset !important
     }
 }
