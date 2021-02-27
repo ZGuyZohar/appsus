@@ -8,7 +8,7 @@ export default {
     <nav :class="setClassName" >
     <router-link class="nav-links open-menu" to="/keep/keep-page">Keep</router-link>
     <router-link class="nav-links open-menu" to="/email">E-Mail</router-link>
-    <router-link class="nav-links open-menu" to="/miss-book">Books</router-link>
+    <router-link class="nav-links open-menu" to="/book">Books</router-link>
    
 </nav>
 </div>
