@@ -9,6 +9,7 @@ body {
     margin: 0 auto;
     box-sizing: border-box;
     text-align: center;
+    
 }
 
 /* HELPERS */
@@ -18,17 +19,27 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(247, 243, 238);
+    border-bottom: 2px solid rgb(250, 238, 238);
+   
 }
 
 nav {
     align-content: center;
+    margin-right: 170px;
+}
+
+.logo {
+    font-family: Arial;
+    text-decoration: none;
+    margin-left: 90px;
+    color: #383f47;
 }
 
 .nav-links {
     font-size: 1.5rem;
     margin: 10px;
     text-decoration: none;
+    color: #5f6368;
 }
 
 
@@ -42,3 +53,22 @@ footer{
     padding: 5px;
 }
 
+
+@media (max-width: 540px) {
+.nav-links {
+    position: fixed;
+    
+    top: 60px;
+    flex-direction: column;
+    height: 50vh;
+    
+    padding: 10px;
+    opacity: 0.9;
+    width: 200px;
+    z-index: 2;
+    transform: translateX(100%);
+    transition: transform .4s, box-shadow .4s;
+   
+}
+
+}
