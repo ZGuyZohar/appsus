@@ -1,16 +1,25 @@
+import { eventBus } from '../../services/event-bus-service.js'
+
 export default {
     template: `
-    <section>
+    <section :class="" class="create-container">
         <form @submit.prevent="addNote">
             <input class="keep-input" type="text" v-model="info.txt" placeholder="Take a note..."/>
-            <input class="keep-input" type="text" v-model="info.url" placeholder="Add image..." @change="uploadImage"/>
-            <input class="keep-input" type="text" v-model="info.video" placeholder="Add video http.. not youtube" @change="uploadVideo"/>
-            <input class="keep-input" type="text" v-model="info.audio" placeholder="Add audio file.." @change="uploadAudio"/>
-            <input class="keep-input" type="text" v-model="info.todos" placeholder="Separate todo list by comma.." @change="uploadTodos"/>
-            <button>Add note </button>
+            <input class="keep-input" v-if="toggleInputs.img" type="text" v-model="info.url" placeholder="Add image..." @change="uploadImage"/>
+            <input class="keep-input" v-if="toggleInputs.video" type="text" v-model="info.video" placeholder="Add video http.. not youtube" @change="uploadVideo"/>
+            <input class="keep-input" v-if="toggleInputs.audio" type="text" v-model="info.audio" placeholder="Add audio file.." @change="uploadAudio"/>
+            <input class="keep-input" v-if="toggleInputs.todos" type="text" v-model="info.todos" placeholder="Separate todo list by comma.." @change="uploadTodos"/>
+            <button>Add Note</button>
         </form>
+        <ul>
+            <span @click="inputToggler(1)">Image</span>
+            <span @click="inputToggler(2)">Video</span>
+            <span @click="inputToggler(3)">Audio</span>
+            <span @click="inputToggler(4)">Todos</span>
+        </ul>
     </section>`
     ,
+    props: ['resetInputs'],
     data(){
         return {
             type: null,
@@ -20,17 +29,22 @@ export default {
                 video: '',
                 audio: '',
                 todos:''
+            },
+            toggleInputs: {
+                txt: false,
+                img: false,
+                video: false,
+                audio: false,
+                todos: false
             }
         }
     },
     methods: {
         addNote() {
-            
             const newNote = {
                 isPinned: false,
                 info: {
                     txt: this.info.txt,
-                  
                 }
             }
             if(!this.type) newNote.type = 'noteTxt'
@@ -52,6 +66,11 @@ export default {
             this.info.video = '';
             this.info.audio = '';
             this.info.todos = '';
+            const msg = {
+                        txt: `Note created succesfully`,
+                        type: 'success'
+                    }
+            eventBus.$emit('show-msg', msg)
             this.$emit('setNote' , newNote)
         },
         uploadImage(){
@@ -66,5 +85,36 @@ export default {
         uploadTodos(){
             this.type = 'noteTodos'
         },
+        inputToggler(mode){
+            this.$emit('inputRemover', false)
+            if(!mode) this.toggleInputs.txt = true
+            if(mode === 1){
+                this.toggleInputs = {}
+               this.toggleInputs.img = true 
+            } 
+            if(mode === 2) {
+                this.toggleInputs = {}
+               this.toggleInputs.video = true 
+            } 
+            if(mode === 3){
+                this.toggleInputs = {}
+               this.toggleInputs.audio = true 
+            }  
+            if(mode === 4) {
+                this.toggleInputs = {}
+               this.toggleInputs.todos = true 
+            }
+        }
+    },
+    watch: {
+        resetInputs(){
+            if(this.resetInputs) this.toggleInputs = {
+                txt: false,
+                img: false,
+                video: false,
+                audio: false,
+                todos: false
+            }
+        }
     }
 }

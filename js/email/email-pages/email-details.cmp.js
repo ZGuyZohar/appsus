@@ -5,11 +5,15 @@ import { eventBus } from '../../services/event-bus-service.js'
 export default {
     template: `
     <section class="email">
-        <aside-nav :emails="emails" @filter="setFilter" />
+        <aside-nav v-if="emails" :emails="emails" @filter="setFilter" />
         <ul class="mail-details" v-if="mail"> 
             <li>{{mail.subject}} </li>
             <li>{{mail.name}} - {{mail.email}}</li>
-            <li class="date-delete"><small>{{mail.sentAtToShow}}</small> <span @click="removeMail">Delete</span></li>
+            <li class="date-delete"><small>{{mail.sentAtToShow}}</small>
+            <div>
+            <span><router-link :to="'/email/' + mail.id + '/reply'">Reply</router-link></span>
+            <span @click="removeMail">Delete</span></div>
+            </li>
 <hr>
             <li><pre>{{mail.body}}</pre> </li>
         </ul>
@@ -43,7 +47,6 @@ export default {
         emailService.getById(id)
             .then(mail => this.mail = mail)
             this.loadEmails()
-            console.log(this.textToShow);
     }
 
 }

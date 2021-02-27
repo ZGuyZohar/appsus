@@ -6,7 +6,7 @@ export default {
             <li class="name"> {{mail.name}} </li>
             <li class="subject"> {{mail.subject}} </li>
             <li class="sent-at"> {{mail.sentAtToShow}} </li>
-            <div class="features"><span v-if="toggleFeatures" @click.stop="removeMail">🗑</span> <span v-if="toggleFeatures" @click.stop="toggleRead">✉</span>  </div>  
+            <div class="features"><router-link v-if="toggleFeatures" @click.native="$event.stopImmediatePropagation()" :to="'/email/' + mail.id + '/reply'">↩</router-link><span v-if="toggleFeatures" @click.stop="removeMail">🗑</span> <span v-if="toggleFeatures" @click.stop="toggleRead">✉</span>  </div>  
         </router-link>
     `,
     props: ['mail'],

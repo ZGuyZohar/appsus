@@ -40,10 +40,20 @@ export default {
         removeMail(mailId){
             emailService.remove(mailId)
             .then(this.loadEmails);
+            const msg = {
+                    txt: `Email deleted succesfully`,
+                    type: 'success'
+                }
+            eventBus.$emit('show-msg', msg)
         },
         sendMail(newMail){
             emailService.save(newMail)
             .then(this.loadEmails)
+            const msg = {
+                    txt: `Email sent succesfully`,
+                    type: 'success'
+                }
+            eventBus.$emit('show-msg', msg)
         },
         setFilterBySent(filter){
             this.filterBy = filter
