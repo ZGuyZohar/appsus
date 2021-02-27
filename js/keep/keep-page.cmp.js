@@ -3,6 +3,7 @@ import noteTxt from './keep-cmps/note-txt.cmp.js'
 import noteVideo from './keep-cmps/note.video.cmp.js'
 import noteAudio from './keep-cmps/note-audio.cmp.js'
 import noteImg from './keep-cmps/note-img.cmp.js'
+import noteTodos from './keep-cmps/note-todos.cmp.js'
 import { keepService } from './services/keep-service.js'
 
 
@@ -21,19 +22,13 @@ export default {
     </section>
     `,
     data() {
-        return {
-            noteToUpdate:{
-                txt:''
-            },
+        return {         
             isType: null,
             notes: [],
             currNote: null
         }
     },
     methods: {
-        // close() {
-        //     this.isClicked = false
-        // },
         loadNotes() {
             keepService.query()
                 .then(notes => this.notes = notes)
@@ -42,8 +37,9 @@ export default {
         setCurrNote(note){
             this.currNote = note;
         },
-        updateNote(txtToChange, noteToChange) {
-            noteToChange.info.txt = txtToChange
+        updateNote(txtToChange, noteToChange, id) {
+            noteToChange.info.txt[id] = txtToChange
+            if(id) noteToChange
             keepService.updateNote(noteToChange)
             .then(this.loadNotes)
 
@@ -77,7 +73,8 @@ export default {
         noteAudio,
         noteTxt,
         noteImg,
-        createNote
+        createNote,
+        noteTodos
     },
 
 }
