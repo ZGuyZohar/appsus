@@ -67,7 +67,11 @@ footer {
     padding: 5px;
 }
 
-
+@media (max-width: 840px) {
+.app-header {
+    justify-content: space-between;
+}
+}
 @media (max-width: 540px) {
 
 nav {
