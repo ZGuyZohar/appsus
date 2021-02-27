@@ -7,7 +7,10 @@ export default {
         <h3 @click="toggleInput">{{note.info.txt}} </h3>
        
          <input type="text" @change="updateTxt" v-if="showInput" v-model="txt" />
-      <audio width="250"  height="200" :src="note.info.audio"></audio>
+      <audio controls>
+        <!-- <source src="horse.ogg" type="audio/ogg"> -->
+        <source src="horse.mp3" type="audio/mpeg">
+        </audio>
     </section>
     `,
     props: ['note'],

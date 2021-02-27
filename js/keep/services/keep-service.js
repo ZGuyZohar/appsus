@@ -39,8 +39,6 @@ function getEmptyNote() {
 
 }
 
-
-
 function save(note) {
     return storageService.post(NOTES_KEY,note )
 }

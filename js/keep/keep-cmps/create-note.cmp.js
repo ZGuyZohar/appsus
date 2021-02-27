@@ -45,6 +45,7 @@ export default {
             this.info.url = '';
             this.info.video = '';
             this.info.audio = '';
+            console.log(newNote);
             this.$emit('setNote' , newNote)
         },
         uploadImage(){

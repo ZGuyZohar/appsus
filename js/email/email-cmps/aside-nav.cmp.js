@@ -10,16 +10,18 @@ export default {
             <li @click="filterBy('sent')">Sent</li>
             <li v-if="emails.length" class="read-count">Read: {{readInPercent}} </li>
         </ul>
-        <section v-if="getMailComposer" class="composer">
-            <button @click="closeComposer">Close</button>
-            <form @submit.prevent="createMail(name, email, subject, body)"  >
-                <input type="email" v-model="email" placeholder="To: 'e.g. example@gmail.com'" />
-                <input type="text" v-model="name" placeholder="From" />
-                <input type="text" v-model="subject" placeholder="Subject" />
-                <textarea rows="23" v-model="body" cols="70"> </textarea>
-                <button>Send</button>
-            </form>
-        </section>
+        <div @click.self="closeComposer" :class="showModal" class="composer-container">
+            <section v-if="getMailComposer" class="composer">
+                <button @click="closeComposer">Close</button>
+                <form @submit.prevent="createMail(name, email, subject, body)"  >
+                    <input type="email" v-model="email" placeholder="To: 'e.g. example@gmail.com'" />
+                    <input type="text" v-model="name" placeholder="From" />
+                    <input type="text" v-model="subject" placeholder="Subject" />
+                    <textarea rows="23" v-model="body" cols="70"> </textarea>
+                    <button>Send</button>
+                </form>
+            </section>
+        </div>
     </section>
     `,
     props: ['emails', 'mail'],
@@ -31,7 +33,7 @@ export default {
             subject: '',
             body: '',
             read: 0,
-            currMail: null         
+            currMail: null,    
         }
     },
     methods: {
@@ -54,6 +56,7 @@ export default {
             // if(this.$router.history.current.path !== '/email') this.$router.push('/email/').catch(() => {})
         },
         amountRead(){
+            if(!this.emails) return
             this.read = 0
             this.emails.forEach((mail) => {
                 if(mail.isRead) this.read += 1;
@@ -63,6 +66,9 @@ export default {
     computed: {
         readInPercent(){
             return parseInt(this.read / this.emails.length  * 100) + '%'
+        },
+        showModal(){
+            return {'show-modal' : !this.getMailComposer}
         }
     },
     created(){

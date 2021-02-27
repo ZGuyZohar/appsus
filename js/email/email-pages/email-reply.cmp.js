@@ -6,19 +6,24 @@ export default {
     template: `
     <section class="email">
         <aside-nav :emails="emails" @filter="setFilter" />
-        <ul class="mail-details" v-if="mail"> 
+        <ul class="mail-details reply" v-if="mail"> 
             <li>{{mail.subject}} </li>
             <li>{{mail.name}} - {{mail.email}}</li>
             <li class="date-delete"><small>{{mail.sentAtToShow}}</small> <span @click="removeMail">Delete</span></li>
-<hr>
-            <li><pre>{{mail.body}}</pre> </li>
+<hr>        
+            <li> <input type="text" />
+            <li><textarea v-model="txtToReply">{{txtForReply}}</textarea> </li>
         </ul>
-    </section>
-    `,
+        <pre>{{txtToReply}}</pre>
+    </section>`
+    ,
     data(){
         return {
             mail: null,
             emails: null,
+            addedTxt: ` ===================================================================
+Re:`,
+            txtToReply: ''
         }
     },
     methods: {
@@ -32,18 +37,25 @@ export default {
         },
         setFilter(filter){
             this.$router.push('/email/').catch(() => {});
-            eventBus.$emit('send-filter', filter)
+            eventBus.$emit('send-filter', filter) 
         },
+        setTxtToReply(){
+            return this.txtToReply = this.mail.body + this.addedTxt
+        }
+    },
+    computed: {
+        txtForReply(){
+            return this.mail.body + this.addedTxt
+        }
     },
     components: {
         asideNav
     },
-    created() {
+    created(){
         const id = this.$route.params.id
         emailService.getById(id)
             .then(mail => this.mail = mail)
-            this.loadEmails()
-            console.log(this.textToShow);
+            .then(this.setTxtToReply)
+        this.loadEmails()
     }
-
 }

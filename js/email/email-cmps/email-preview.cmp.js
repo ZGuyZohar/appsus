@@ -3,7 +3,7 @@
 export default {
     template: `
      <router-link to="/email" class="preview" @mouseenter.native="showFeatures" @mouseleave.native="hideFeatures" @click.native="openMail" :class="readClass" >  
-            <li> {{mail.name}} </li>
+            <li class="name"> {{mail.name}} </li>
             <li class="subject"> {{mail.subject}} </li>
             <li class="sent-at"> {{mail.sentAtToShow}} </li>
             <div class="features"><span v-if="toggleFeatures" @click.stop="removeMail">🗑</span> <span v-if="toggleFeatures" @click.stop="toggleRead">✉</span>  </div>  

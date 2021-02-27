@@ -84,9 +84,9 @@
         flex-wrap: wrap;
     }
 
-.notes-container >* {
-margin: 20px;
-}
+    .notes-container >* {
+        margin: 20px;
+    }
 
     .note-txt{
         width: 100%;
@@ -99,4 +99,5 @@ margin: 20px;
         width: 100%;
         width: 200px;
         max-height: 200px;
+    }
 }

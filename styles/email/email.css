@@ -21,9 +21,12 @@ button {
     margin-top: 2.3125rem;
 }
 
-.email .filter input {
+.email .filter #search {
     border: 2px solid lightgray;
     font-size: 1.1rem;
+    border-radius: 2em;
+    height: 36px;
+    padding-left: 12px;
 }
 
 .email .filter input:focus {
@@ -60,8 +63,14 @@ button {
     width: 17%;
 }
 
+.email .list-header li:not(:first-child) {
+    font-weight: 600;
+    cursor: pointer;
+}
+
 .email .list .subject {
     width: 66%;
+    text-align: initial;
 }
 
 .email .list .sent-at {
@@ -96,6 +105,9 @@ button {
     margin: 0;
 }
 
+.email .list a:first-child {
+    border-top: 2px solid rgb(208 208 208 / 40%);
+}
 
 .email .preview {
     position: relative;
@@ -104,7 +116,7 @@ button {
     justify-content: space-between;
     align-items: center;
     height: 1.975rem;
-    box-shadow: inset 0px 0px 20px 0px #ffffff;
+    border-bottom: 1px solid rgb(84 84 84 / 40%);
 }
 
 
@@ -135,6 +147,19 @@ button {
 
 .email .read:focus {
     background-color: rgba(0, 0, 0, 0.2)
+}
+
+.email .show-modal {
+    position: unset !important
+}
+
+.email .composer-container {
+    background: rgb(0 0 0 / 30%);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
 }
 
 .email .composer {
@@ -245,6 +270,15 @@ button {
     align-items: flex-start;
     justify-content: space-evenly;
     width: 59%;
+    box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.mail-details pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    text-align: justify;
 }
 
 .mail-details li:first-child {
@@ -256,6 +290,8 @@ button {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    border-bottom: 2px solid #c1c1c1;
+    padding-bottom: 12px;
 }
 
 .date-delete span {
@@ -273,4 +309,146 @@ button {
     background-color: #fafafb;
 }
 
-.mail-details li pre {}
+/* REPLY */
+
+.mail-details.reply {
+    height: 500px;
+}
+
+.mail-details.reply li:last-child {
+    height: 300px;
+    width: 100%;
+}
+
+.mail-details.reply textarea {
+    height: 300px;
+    width: 100%;
+}
+
+
+@media (max-width: 920px) {
+    .email .list-header {
+        display: none;
+    }
+
+    .email .preview {
+        height: 5rem;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 2%;
+    }
+
+    .email .name {
+        align-self: flex-start;
+        text-align: initial;
+    }
+
+    .email .subject {
+        align-self: flex-start;
+    }
+
+    .email .list .sent-at {
+        align-self: flex-end;
+        width: unset;
+    }
+}
+
+@media (max-width:795px) {
+    .email .aside-nav ul li:first-child {
+        padding: 0 .625rem 0 0;
+    }
+
+    .email .composer-container {
+        position: fixed;
+    }
+
+    .email .composer {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 416px;
+        height: 418px;
+        padding: 15px;
+        transform: translate(-50%, -50%);
+        border-radius: 1em;
+    }
+
+    .composer textarea {
+        width: 100%;
+        height: 250px;
+    }
+}
+
+@media (max-width:690px) {
+    .email {
+        flex-direction: column;
+    }
+
+    .email .filter {
+        margin: 0;
+    }
+
+    .aside-nav ul {
+        flex-direction: row;
+        width: 100vw;
+        padding: 0;
+        padding-left: 1.875rem;
+    }
+
+    .email .aside-nav ul li:not(:first-child) {
+        border-radius: 0 0 0 0;
+    }
+
+    .aside-nav ul li {
+        padding: 0;
+    }
+
+    .email .mail-details {
+        width: 80%;
+        align-self: center;
+    }
+
+}
+
+@media (max-width:544px) {
+    .email .filter {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width:460px) {
+
+    .email .composer {
+        width: 344px;
+        height: 395px;
+    }
+
+    .composer textarea {
+        height: 238px;
+    }
+
+    .email .mail-details {
+        width: 97%;
+        align-self: center;
+        height: 340px;
+    }
+}
+
+
+@media (max-width:315px) {
+    .email .filter {
+        justify-content: space-evenly;
+        height: 110px;
+        flex-direction: column;
+    }
+
+    .aside-nav ul {
+        padding-left: 0;
+        width: unset;
+    }
+
+    .email .preview {
+        height: 8.4rem;
+        justify-content: space-around;
+    }
+}
