@@ -123,9 +123,16 @@ button {
 .email .features {
     width: 40px;
     position: absolute;
-    font-size: 1.3rem;
     display: flex;
     right: 2%;
+}
+
+.email .features span {
+    font-size: 1.3rem;
+}
+
+.email .features a {
+    font-size: 1.3rem;
 }
 
 .email .features span:active {
