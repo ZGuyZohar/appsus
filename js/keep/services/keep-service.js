@@ -16,7 +16,15 @@ export const keepService = {
 
 
 function query() {
-    return storageService.query(NOTES_KEY)
+        return storageService.query(NOTES_KEY)
+    .then((notes) => {
+      if(!notes || !notes.length){
+        console.log('fromGNotes');
+        storageService._save(NOTES_KEY, gNotes)
+        return gNotes
+      }
+      return notes
+    })
     }
 
 function createNote() {
@@ -61,38 +69,58 @@ function remove(noteId) {
     return storageService.remove(NOTES_KEY, noteId)
 }
 
-// var notes = [
-//     {
-//         id: makeId(length = 8),
-//     type: "noteTxt",
-//     isPinned: true,
-//     info: {
-//     txt: "Fullstack Me Baby!"
-//     }
-//     },
-//     {
-//         id: makeId(length = 8),
-//     type: "noteImg",
-    // info: {
-    // url: "http://some-img/me",
-    // title: "Me playing Mi"
-//     },
-//     style: {
-//     backgroundColor: "#00d"
-//     }
-//     },
-//     {
-//         id: makeId(length = 8),
-//     type: "noteTodos",
-//     info: {
-//     label: "How was it:",
-//     todos: [
-//     { txt: "Do that", doneAt: null },
-//     { txt: "Do this", doneAt: 187111111 }
-//     ]
-//     }
-//     }
-//    ];
+var gNotes = [
+    {
+        id: makeId(length = 8),
+        type: "noteTxt",
+        isPinned: false,
+        info: {
+            txt: 'I think someone thought of me'
+        }
+    },
+    {
+        id: makeId(length = 8),
+        type: "noteImg",
+        isPinned: false,
+        info: {
+            url: "https://upload.wikimedia.org/wikipedia/en/0/06/ButtersStotch.png",
+            txt: "Butters"
+        },
+    },
+    {
+        id: makeId(length = 8),
+        type: "noteAudio",
+        isPinned: false,
+        info: {
+            txt: 'The Beatles',
+            audio: '../sounds/salamisound-6018270-french-wine-bottle-falls-on.mp3'
+        }
+    },
+    {
+        id: makeId(length = 8),
+        type: "noteTodos",
+        isPinned: false,
+        info: {txt: ["Do this", " Do that", " Go to the gym"]}
+    },
+    {
+        id: makeId(length = 8),
+        type: "noteVideo",
+        isPinned: false,
+        info: {txt: "Chess Video", video: "https://www.dailymotion.com/video/x7r96w3"}
+    },
+    {
+        id: makeId(length = 8),
+        type: "noteTxt",
+        isPinned: false,
+        info: {txt: "Don't forget to talk to or"}
+    },
+    {
+        id: makeId(length = 8),
+        type: "noteTodos",
+        isPinned: false,
+        info: {txt: ["Go to the gym", " Go to a movie", " finish homework"]}
+    },
+];
 
 
    function saveToStorage(key, value) {

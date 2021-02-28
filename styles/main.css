@@ -13,7 +13,7 @@ body {
     margin: 0 auto;
     box-sizing: border-box;
     text-align: center;
-    
+
 }
 
 /* HELPERS */
@@ -24,7 +24,7 @@ body {
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid rgb(250, 238, 238);
-  
+
 }
 
 .nav-container {
@@ -49,7 +49,7 @@ nav {
 }
 
 .nav-links {
-   
+
     font-size: 1.5rem;
     margin: 10px;
     text-decoration: none;
@@ -57,14 +57,27 @@ nav {
 }
 
 .home-card {
-    height: 300px;
-    width: 300px;
+    height: 400px;
+    width: 30%;
     border: 1px solid;
-    display: flex;
     box-shadow: 2px 4px rgb(147, 158, 168);
     align-items: center;
     background-color: rgb(252, 248, 248);
 
+}
+
+.card-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.home-card img {
+    width: 100%;
+    max-height: 40%;
 }
 
 .home-title {
@@ -74,27 +87,16 @@ nav {
 .home-card:hover {
     opacity: 0.8;
     cursor: pointer;
-    
+
 }
 
-.home-container{
+.home-container {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-evenly;
-    margin-top: 100px;
-  
 }
 
-.home-container h1{
-    color: rgb(54, 62, 70);
-    margin-left: 100px;
-    margin-bottom: 120px;
-    font-size: 2rem;
-    padding: 20px;
-   
-}
 
-.home-header{
+.home-header {
     font-size: 2rem;
     margin-top: 50px;
     color: rgb(54, 62, 70);
@@ -116,6 +118,7 @@ footer {
     .nav-container {
         margin-right: 50px;
     }
+
     .logo {
         margin-left: 50px;
     }
@@ -123,39 +126,41 @@ footer {
 
 @media (max-width: 540px) {
 
-nav {
-    display: flex;
-    position: fixed;
-    flex-direction: column;
-    background-color: rgb(218, 217, 214);
-    width: 200px;
-    z-index: 2;
-    right: 0;
-    top: 60px;
-    height: 50vh;   
-    padding: 10px;
-    opacity: 0.9;
-    transform: translateX(100%);
-    transition: transform .4s, box-shadow .4s;
-   
+    nav {
+        display: flex;
+        position: fixed;
+        flex-direction: column;
+        background-color: rgb(218, 217, 214);
+        width: 200px;
+        z-index: 2;
+        right: 0;
+        top: 60px;
+        height: 50vh;
+        padding: 10px;
+        opacity: 0.9;
+        transform: translateX(100%);
+        transition: transform .4s, box-shadow .4s;
+
+    }
+
+    .menu-btn {
+        display: block;
+        height: 60px;
+        background-color: rgb(252, 247, 232);
+        border-radius: 10px;
+    }
+
+    .open-menu {
+        transform: translateX(0);
+        box-shadow: -3px 3px 3px 0px;
+    }
+
+    .logo {
+        margin-left: 50px;
+    }
+
 }
 
-.menu-btn {
-    display: block;
-    height: 60px;
-    background-color: rgb(252, 247, 232);
-    border-radius: 10px;
-}
-
-.open-menu  {
-    transform: translateX(0);
-    box-shadow: -3px 3px 3px 0px;
-}
-.logo {
-    margin-left: 50px;
-}
-
-}
 /* USER MSG */
 
 .user-msg {

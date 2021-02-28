@@ -148,5 +148,55 @@ const gMails = [
         sentAtToShow : new Date('January 3, 2021 22:24:00').toLocaleDateString(),
         sentAt: new Date('January 3, 2021 22:24:00').getTime(),
         isSent: false
+      },
+      {
+        id: storageService._makeId(),
+        name: 'Popo Bit',
+        email: 'popobit@misterbit.com',
+        subject: 'Great lesson yesterday', 
+        body: `Did you enjoy the lecture? I thought it was amazing and the teacher was very informative.
+We should study together some time don't you think?`, 
+        isRead: false, 
+        sentAtToShow : new Date('Februray 23, 2021 22:24:00').toLocaleDateString(),
+        sentAt: new Date('February 23, 2021 22:24:00').getTime(),
+        isSent: false
       },    
+      {
+        id: storageService._makeId(),
+        name: 'Daniel Morace',
+        email: 'morace.dani95@appsus.com',
+        subject: 'Daniel has shared with you a post on facebook.', 
+        body: `Check out this funny baby falling at 'https://www.facebook.com/funny&edog/21DS2GD`, 
+        isRead: false, 
+        sentAtToShow : new Date('February 28, 2021 22:24:00').toLocaleDateString(),
+        sentAt: new Date('February 28, 2021 22:24:00').getTime(),
+        isSent: false
+      },    
+      {
+        id: storageService._makeId(),
+        name: 'Rick Astley',
+        email: 'rickastley@gmail.com',
+        subject: 'Thanks for coming last night!', 
+        body: `That was a crazy night! happy you enjoyed yourself, 
+next week I'm having another party you should come again! `, 
+        isRead: false, 
+        sentAtToShow : new Date('May 24, 2020 14:24:00').toLocaleDateString(),
+        sentAt: new Date('May 24, 2020 14:24:00').getTime(),
+        isSent: true
+      },    
+      {
+        id: storageService._makeId(),
+        name: 'Marshal',
+        email: 'marshal.mathers@yahoo.com',
+        subject: 'Dear stan', 
+        body: `Gotta call me man! I'll be the biggest fan you'll ever lose.
+Sincerely yours,
+Stan.
+P.S. We should be together too.
+         `, 
+        isRead: false, 
+        sentAtToShow : new Date('August 15, 2000 22:24:00').toLocaleDateString(),
+        sentAt: new Date('August 15, 2000 22:24:00').getTime(),
+        isSent: true
+      },        
 ]
